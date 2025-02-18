@@ -4,22 +4,29 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace hikido
 {
     public class GameManager : MonoBehaviour
     {
+
         [SerializeField] private GameManagerSO gameManagerSO;
         [SerializeField] private SceneChanger sceneChanger;
-        
+        [SerializeField] private SoundManager soundManager;
+        [SerializeField] private HPManager hpManager;
 
-        [SerializeField] private int score = 0;
-        [SerializeField] private int totalScore = 0;
-        [SerializeField] private int highScore = 0;
+        //仮
+        [SerializeField] private UIlabel uIlabel;
 
+
+        [Header("スコア")]
         //TODO: 間違いごとにスコアを変えるようにする
         [SerializeField] private int upScore = 0;
         [SerializeField] private int timeUpScore = 500;
+        public static int highScore = 0;
+        public static int totalScore = 0;
+        
 
         //仮のキャラクターHP
         [SerializeField] private int CharactorHP = 0;
@@ -36,7 +43,6 @@ namespace hikido
             //一度だけ最初に呼び出す
             InvokeRepeating("TimeCountUP", 0.0f, 1.0f);
 
-            Invoke("StopTime", 10.0f);
         }
 
         private void Update()
@@ -48,13 +54,12 @@ namespace hikido
             }
         }
 
-
         /// <summary>　/// 難易度選択後　/// </summary>
         private void IngameStart()
         {
+
             //gamestart時にAction内の格納している関数を使用
             gameManagerSO.IngameStart?.Invoke();
-
         } 
 
 
@@ -62,15 +67,18 @@ namespace hikido
         private void EndGgme()
         {
             //条件（体力 = 0) playerからHPを参照
-            if(CharactorHP > 0)
+            if(hpManager.EndFlg())
             {
                 endFlg = true;
                 gameManagerSO.OutGameflg = true;
-                //次のsceneへの遷移
 
                 //BGMの停止と切り替え
-                
+                soundManager.BGMStop();
 
+                //次のsceneへの遷移
+                //SceneManager.LoadScene("ResultScene");
+
+        
             }
 
 
@@ -78,19 +86,11 @@ namespace hikido
         }
 
 
-
-        //テスト用メソッド
-        //private void StopTime()
-        //{
-        //    Debug.Log("StopTime");
-        //    gameManagerSO.Ingameflg = false;
-        //    endFlg = true;
-        //}
-
-        //時間経過によるスコアの加算
+        /// <summary> /// 時間経過によるスコアの加算 /// </summary>
         private void TimeCountUP()
         {
             totalScore += timeUpScore;
+            uIlabel.ScoreUP.text = totalScore.ToString();
             Debug.Log(totalScore);
         }
 
@@ -103,7 +103,7 @@ namespace hikido
                 //TODO: ベルトコンベアの処理を仮で作成してからテスト
                 //アンドロイドをはじくとスコア加算
                 //条件文
-                totalScore += upScore;
+                    //totalScore += upScore;
             }
             else if(endFlg) 
             {
@@ -114,19 +114,19 @@ namespace hikido
                 {
                     totalScore = highScore;
                 }
-
-                //スコアを0にリセット
-                if (endFlg) { totalScore = 0;}
-
             }
+
         }
 
+        /// <summary> /// スコアを初期化 /// </summary>
+        public void ResetScore()
+        {
+            totalScore = 0;
+        }
+
+       
+
         
-
-
-
-
-
     }
 
 }

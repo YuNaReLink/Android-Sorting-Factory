@@ -16,7 +16,7 @@ namespace hikido
             gamemanagerso.OutGame += OutGameBGM;
         }
 
-        private void StartBGMTIlte()
+        public void StartBGMTIlte()
         {
             //ÉGÉâÅ[Ç™î≠ê∂ÇµÇƒÇ¢ÇÈÇΩÇﬂ
             AudioManager.Instance.PlayBGM(BGMSound.BGMDETA.Title);
@@ -36,7 +36,7 @@ namespace hikido
             gamemanagerso.OutGame -= OutGameBGM;
         }
 
-        private void BGMStop()
+        public void BGMStop()
         {
             audiomanager.BGMStop();
         }
