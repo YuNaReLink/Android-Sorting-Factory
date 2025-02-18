@@ -15,6 +15,8 @@ namespace Kusume
         private AndroidType type;
 
         private SpriteRenderer spriteRenderer;
+        [SerializeField]
+        private new ParticleSystem particleSystem;
 
         private void Awake()
         {
@@ -24,6 +26,7 @@ namespace Kusume
         public void ChangeType(AndroidLedgerInfo info)
         {
             spriteRenderer.sprite = info.image;
+            particleSystem.gameObject.SetActive(info.effectFlag);
         }
     }
 }
