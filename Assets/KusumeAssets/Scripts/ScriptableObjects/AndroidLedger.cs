@@ -5,9 +5,10 @@ namespace Kusume
     [System.Serializable]
     public struct AndroidLedgerInfo
     {
-        public AndroidType type;
-        public Sprite image;
-        public bool effectFlag;
+        public AndroidType  type;
+        public Sprite       image;
+        public Sprite[]     images;
+        public bool         effectFlag;
     }
     [CreateAssetMenu(fileName = "AndroidLedger", menuName = "Ledger/AndroidLedger", order = 1)]
     public class AndroidLedger : ScriptableObject

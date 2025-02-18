@@ -15,10 +15,21 @@ MonoBehaviour:
   androidLedgerInfos:
   - type: 0
     image: {fileID: 0}
+    images:
+    - {fileID: 21300000, guid: 5a3107098391df94eb421ed56b8d95c4, type: 3}
+    - {fileID: 21300000, guid: 4da0fa3c896370b439545f1a883f598a, type: 3}
+    - {fileID: 21300000, guid: 5ddf7823f315e8f4195a3e96663fc9c2, type: 3}
     effectFlag: 0
   - type: 1
     image: {fileID: 0}
+    images:
+    - {fileID: 21300000, guid: 8f056b7cc5e74154c8e5d4714b25cfd4, type: 3}
+    - {fileID: 21300000, guid: 019a9756ec05b91408c710dd8ab3974e, type: 3}
+    - {fileID: 21300000, guid: ae0faaddcbfb3d94b8e040ef496fe208, type: 3}
+    - {fileID: 21300000, guid: 1ee364ea0cbf5224dad71d7333b122c8, type: 3}
     effectFlag: 0
   - type: 2
     image: {fileID: 0}
+    images:
+    - {fileID: 21300000, guid: 186eb125eb37cb74c9a1656c5e7ebced, type: 3}
     effectFlag: 1
