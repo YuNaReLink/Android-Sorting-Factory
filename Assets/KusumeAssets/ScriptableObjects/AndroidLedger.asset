@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759050aa2d2aadd478cf882580cb607a, type: 3}
   m_Name: AndroidLedger
   m_EditorClassIdentifier: 
-  androidLedgerInfos: []
+  androidLedgerInfos:
+  - type: 0
+    image: {fileID: 0}
+    effectFlag: 0
+  - type: 1
+    image: {fileID: 0}
+    effectFlag: 0
+  - type: 2
+    image: {fileID: 0}
+    effectFlag: 1
