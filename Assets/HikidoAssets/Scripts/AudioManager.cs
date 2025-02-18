@@ -35,19 +35,19 @@ namespace hikido
 
 
         /// <summary> /// BGMÇÃí‚é~ /// </summary>
-        private void BGMStop()
+        public void BGMStop()
         {
             BGMSoruce.Stop();
         }
 
         /// <summary> /// BGMÇÃàÍéûí‚é~ /// </summary>
-        private void BGMPause()
+        public void BGMPause()
         {
             BGMSoruce.Pause();
         }
 
         /// <summary>Å@/// BGMÇÃçƒäJÅ@/// </summary>
-        private void BGMauPause()
+        public void BGMauPause()
         {
             BGMSoruce.UnPause();
         }
