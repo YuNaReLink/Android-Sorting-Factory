@@ -4,10 +4,12 @@ namespace Kusume
 {
     public class Movement : MonoBehaviour
     {
-        private new Rigidbody2D rigidbody2D;
+        private new Rigidbody2D     rigidbody2D;
 
         [SerializeField]
-        private float speed;
+        private float               speed;
+
+        public void SetSpeed(float s) { speed = s; }
 
         private void Awake()
         {
@@ -24,6 +26,11 @@ namespace Kusume
             var moveVelocity = rigidbody2D.velocity;
             moveVelocity.x = speed;
             rigidbody2D.velocity = new Vector3(moveVelocity.x, rigidbody2D.velocity.y);
+        }
+
+        private void OnBecameInvisible()
+        {
+            gameObject.SetActive(false);
         }
     }
 }
