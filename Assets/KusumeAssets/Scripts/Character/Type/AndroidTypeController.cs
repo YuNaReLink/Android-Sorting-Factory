@@ -12,11 +12,11 @@ namespace Kusume
     public class AndroidTypeController : MonoBehaviour
     {
         [SerializeField]
-        private AndroidType type;
+        private AndroidType         type;
 
-        private SpriteRenderer spriteRenderer;
+        private SpriteRenderer      spriteRenderer;
         [SerializeField]
-        private new ParticleSystem particleSystem;
+        private new ParticleSystem  particleSystem;
 
         private void Awake()
         {
@@ -25,6 +25,7 @@ namespace Kusume
 
         public void ChangeType(AndroidLedgerInfo info)
         {
+            type = info.type;
             spriteRenderer.sprite = info.image;
             particleSystem.gameObject.SetActive(info.effectFlag);
         }

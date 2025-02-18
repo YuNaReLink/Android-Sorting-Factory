@@ -5,6 +5,7 @@ namespace Kusume
     [System.Serializable]
     public struct AndroidLedgerInfo
     {
+        public AndroidType type;
         public Sprite image;
         public bool effectFlag;
     }

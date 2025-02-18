@@ -67,6 +67,7 @@ namespace Kusume
         private void OnPressed()
         {
             buttonImage.sprite = pressedImage;
+            button.onClick?.Invoke();
         }
 
         private void OnRelease()
