@@ -25,8 +25,11 @@ namespace Kusume
 
         public void ChangeType(AndroidLedgerInfo info)
         {
+            //タイプを選択
             type = info.type;
-            spriteRenderer.sprite = info.image;
+            //画像を変更
+            spriteRenderer.sprite = info.images[Random.Range(0, info.images.Length)];
+            //エフェクトフラグを設定
             particleSystem.gameObject.SetActive(info.effectFlag);
         }
     }
