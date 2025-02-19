@@ -47,6 +47,10 @@ namespace hikido
             uiLabel.defectiveProduct.text = defectiveProduct.ToString();
 
         }
+
+        //TODO:リザルト画面からタイトルに戻るときのBGMstopの処理
+
+        
     }
 
 }

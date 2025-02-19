@@ -36,6 +36,7 @@ namespace hikido
             gamemanagerso.OutGame -= OutGameBGM;
         }
 
+
         public void BGMStop()
         {
             audiomanager.BGMStop();

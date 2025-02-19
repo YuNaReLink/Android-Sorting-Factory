@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -40,13 +41,19 @@ namespace hikido
 
         }
 
+        private void OnEnable()
+        {
+            gameManagerSO.OnAddScore += ScoreUP;
+        }
+
+        private void OnDisable()
+        {
+            gameManagerSO.OnAddScore -= ScoreUP;
+        }
+
         private void Update()
         {
-            //終了フラグが立つまで
-            if (!endFlg)
-            {
-                ScoreUP();
-            }
+           
         }
 
         /// <summary>　/// 難易度選択後　/// </summary>
@@ -80,17 +87,18 @@ namespace hikido
         private void TimeCountUP()
         {
             totalScore += timeUpScore;
-            uIlabel.ScoreUP.text = totalScore.ToString();
+            //uIlabel.ScoreUP.text = totalScore.ToString();
             Debug.Log(totalScore);
         }
 
         /// <summary> /// スコアの加算 /// </summary>
         private void ScoreUP()
         {
+            totalScore += upScore;
             //ingame時のみスコアを加算
             if (gameManagerSO.Ingameflg)
             {
-                //TODO: ベルトコンベアの処理を仮で作成してからテスト
+                //enumでキャラクタータイプを設定している
                 //アンドロイドをはじくとスコア加算
                 //条件文
                     //totalScore += upScore;
