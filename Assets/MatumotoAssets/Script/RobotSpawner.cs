@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class RobotSpawner : MonoBehaviour
 {
@@ -22,10 +21,13 @@ public class RobotSpawner : MonoBehaviour
     Transform robots;
 
     List<GameObject> objectList = new List<GameObject>();
+    
+    [SerializeField]
+    private Kusume.AndroidLedger androidLedger;
 
 
-  // List<RobotManage> robotObjectList = new List<RobotManage>();  
-  //サポーターの方が書いてくださったコードを残しています
+    // List<RobotManage> robotObjectList = new List<RobotManage>();  
+    //サポーターの方が書いてくださったコードを残しています
     
     // Update is called once per frame
     private void Start()
@@ -53,15 +55,6 @@ public class RobotSpawner : MonoBehaviour
         isSpawning = true;
     }
 
-    //private void SetupPrefabs()
-    //{
-    //    for(int i = 0; i< robotMaxCount; i++)
-    //    {
-    //        var robot = new RobotManage(Instantiate(robotPrefab));
-    //        robot.SetRobot(false);
-    //    }
-    //}
-
     /// <summary>
     ///　オブジェクトプールのロボットで使えるものがあれば有効化
     /// </summary>
@@ -75,13 +68,22 @@ public class RobotSpawner : MonoBehaviour
                 t.SetPositionAndRotation(pos, rot);
                 //アクティブにする
                 t.gameObject.SetActive(true);
+                SetRobotType(t);
                 return;
             }
          
         }
 
         //生成した時にrobotsの子にする
-       Instantiate(robot, pos, rot,robots);
+       GameObject r = Instantiate(robot, pos, rot,robots);
+       SetRobotType(r.transform);
+    }
+
+    private void SetRobotType(Transform t)
+    {
+        Kusume.AndroidTypeController controller = t.GetComponent<Kusume.AndroidTypeController>();
+        int num = UnityEngine.Random.Range(0, androidLedger.AndroidLedgerInfos.Length);
+        controller.ChangeType(androidLedger.AndroidLedgerInfos[num]);
     }
 }
 
