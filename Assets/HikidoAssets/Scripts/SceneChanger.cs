@@ -8,6 +8,7 @@ namespace hikido
     public class SceneChanger : MonoBehaviour
     {
         [SerializeField] private float changeTime = 1.0f;
+        public string sceneName;
 
         //‰æ–Ê‘JˆÚ
         public void ChangeGameScene(string sceneName)

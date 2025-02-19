@@ -225,6 +225,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3bde399d088a64787fe7be0591556b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &967306792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5286240417134415732, guid: 5c9e0d15b3958a746875c4fb5f59b960, type: 3}
+  m_PrefabInstance: {fileID: 1629939805116309165}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34865edb409746d49a622030f1323ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1221069256 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3439419650559737132, guid: 81d10debaa76b194ea03a41800d086fb, type: 3}
+  m_PrefabInstance: {fileID: 9129357998769013657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1da445989979fd84f90107a721018803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1687988305
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93, y: 63}
+  m_AnchoredPosition: {x: 139, y: 63}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1732667839
@@ -499,7 +521,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff0ce858e9183d448a64c20605756e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScoreUP: {fileID: 0}
+  ScoreUP: {fileID: 1732667839}
+  GenuineProduct: {fileID: 0}
+  defectiveProduct: {fileID: 0}
 --- !u!1 &2093960842
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,7 +558,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93, y: 20.3105}
+  m_AnchoredPosition: {x: 142, y: 20.3105}
   m_SizeDelta: {x: 67.1958, y: 19.8581}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2093960844
@@ -586,10 +610,6 @@ PrefabInstance:
     - target: {fileID: 2782564314491466674, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
       propertyPath: m_Name
       value: AudioManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4948946768756930393, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
-      propertyPath: BGMSounds.Array.size
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8877081554317489938, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
       propertyPath: m_LocalPosition.x
@@ -745,6 +765,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5104414051547687470, guid: 73787c9274927d84692e4688e6c55ed7, type: 3}
+      propertyPath: sceneName
+      value: testgameScene
+      objectReference: {fileID: 0}
     - target: {fileID: 8741264294255312320, guid: 73787c9274927d84692e4688e6c55ed7, type: 3}
       propertyPath: m_Name
       value: SceneChaneger
@@ -766,6 +790,18 @@ PrefabInstance:
       propertyPath: uIlabel
       value: 
       objectReference: {fileID: 2028831427}
+    - target: {fileID: 6801576697093568192, guid: 11f30f04354d83845863beb071d3e078, type: 3}
+      propertyPath: hpManager
+      value: 
+      objectReference: {fileID: 967306792}
+    - target: {fileID: 6801576697093568192, guid: 11f30f04354d83845863beb071d3e078, type: 3}
+      propertyPath: sceneChanger
+      value: 
+      objectReference: {fileID: 1952774736}
+    - target: {fileID: 6801576697093568192, guid: 11f30f04354d83845863beb071d3e078, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1221069256}
     - target: {fileID: 7882891752894758216, guid: 11f30f04354d83845863beb071d3e078, type: 3}
       propertyPath: m_LocalPosition.x
       value: 177
@@ -867,6 +903,10 @@ PrefabInstance:
       propertyPath: changer
       value: 
       objectReference: {fileID: 1952774736}
+    - target: {fileID: 7692351831184831701, guid: 80e71ad248a60af479fa4a037846e6a6, type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 1221069256}
     - target: {fileID: 8800760135807755202, guid: 80e71ad248a60af479fa4a037846e6a6, type: 3}
       propertyPath: m_Name
       value: TitleManager

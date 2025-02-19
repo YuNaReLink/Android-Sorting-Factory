@@ -48,3 +48,6 @@ MonoBehaviour:
   BGMSoruce: {fileID: 0}
   BGMSounds: []
   SECategorys: []
+  masterVolume: 1
+  bgmmasterVolume: 1
+  semasterVolume: 1

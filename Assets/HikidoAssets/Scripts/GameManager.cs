@@ -26,11 +26,6 @@ namespace hikido
         [SerializeField] private int timeUpScore = 500;
         public static int highScore = 0;
         public static int totalScore = 0;
-        
-
-        //仮のキャラクターHP
-        [SerializeField] private int CharactorHP = 0;
-
 
         [Header("スコア用フラグ")]
         private bool endFlg = false;
@@ -57,7 +52,6 @@ namespace hikido
         /// <summary>　/// 難易度選択後　/// </summary>
         private void IngameStart()
         {
-
             //gamestart時にAction内の格納している関数を使用
             gameManagerSO.IngameStart?.Invoke();
         } 
@@ -76,13 +70,9 @@ namespace hikido
                 soundManager.BGMStop();
 
                 //次のsceneへの遷移
-                //SceneManager.LoadScene("ResultScene");
-
+                SceneManager.LoadScene("ResultScene");
         
             }
-
-
-
         }
 
 

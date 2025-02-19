@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changer: {fileID: 0}
   soundManager: {fileID: 0}
-  delayTime: 0
+  delayTime: 2

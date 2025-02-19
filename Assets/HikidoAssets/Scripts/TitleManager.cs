@@ -17,13 +17,11 @@ namespace hikido
             Invoke("soundManager.StartBGMTIlte", delayTime);
         }
 
-        //Ÿ‚Ìscene‚É‘JˆÚˆ—    
-        private void NextScene(string sceneName)
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 soundManager.BGMStop();
-                changer.ChangeGameScene(sceneName);
             }
         }
 

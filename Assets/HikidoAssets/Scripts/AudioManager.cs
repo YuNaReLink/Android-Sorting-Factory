@@ -57,8 +57,6 @@ namespace hikido
         }
 
 
-
-
         /// <summary>
         /// BGMSound‚ÌƒŠƒXƒg“à‚É‚ ‚éBGM‚ğÄ¶
         /// </summary>
