@@ -2,18 +2,63 @@ using UnityEngine;
 
 namespace Kusume
 {
+    /*
+     * ã‚¢ãƒ³ãƒ‰ãƒ­ã‚¤ãƒ‰ã‚’æŒ‡å®šã—ãŸæ–¹å‘ã«é£›ã°ã™ã‚¯ãƒ©ã‚¹
+     */
+    [RequireComponent(typeof(CreateEffectMachine))]
     public class Impact : MonoBehaviour
     {
 
         [SerializeField]
-        private Vector3 impactDirOffset = new Vector3(-1,1,0);
+        private Vector3     impactDirOffset = new Vector3(-1,1,0);
 
         [SerializeField]
-        private float power = 1f;
-
-        // ‰ñ“]‚Ì‹­‚³
+        private float       minImpactY = 0.25f;
         [SerializeField]
-        private float torquePower = 1f; 
+        private float       maxImpactY = 0.75f;
+
+        [SerializeField]
+        private float       power = 1f;
+
+        // å›è»¢ã®å¼·ã•
+        [SerializeField]
+        private float       torquePower = 1f;
+
+        [SerializeField]
+        private bool        crush = false;
+        public bool         Crush => crush;
+
+        [SerializeField]
+        private Vector3     rayOffset;
+
+        [SerializeField]
+        private LayerMask layerMask;
+
+        private void Start()
+        {
+            /*
+            leftRange = transform.position.x - (transform.localScale.x * 0.5f);
+            rightRange = transform.position.x + (transform.localScale.x * 0.5f);
+             */
+        }
+
+        private void Update()
+        {
+            Ray2D ray = new Ray2D(transform.position + rayOffset, -Vector2.up); // Rayã‚’ç”Ÿæˆã€-transform.upã¯é€²è¡Œæ–¹å‘
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 4f,layerMask);//Raycastã‚’ç”Ÿæˆ
+
+            Debug.DrawRay(ray.origin, ray.direction * 4f, Color.green, 0.015f); // é•·ã•1fã€ç·‘è‰²ã§1ãƒ•ãƒ¬ãƒ¼ãƒ å¯è¦–åŒ–
+            if (hit.collider)
+            {
+                AndroidTypeController controller = hit.collider.gameObject.GetComponent<AndroidTypeController>();
+                if (controller == null) { return; }
+                crush = true;
+            }
+            else
+            {
+                crush = false;
+            }
+        }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -23,19 +68,24 @@ namespace Kusume
             movement.Stop();
             movement.SetStopFlag(true);
 
-            Rigidbody2D rigidbody2D = controller.GetComponent<Rigidbody2D>();
-            rigidbody2D.freezeRotation = false;
 
-            // —Í‚ğ‰Á‚¦‚é
-            rigidbody2D.AddForce(impactDirOffset * power, ForceMode2D.Impulse);
-
-            // ƒ‰ƒ“ƒ_ƒ€‚È‰ñ“]‚ğ‰Á‚¦‚éi³‚Ü‚½‚Í•‰‚Ìƒgƒ‹ƒNj
-            float randomTorque = Random.Range(-torquePower, torquePower);
-            rigidbody2D.AddTorque(randomTorque, ForceMode2D.Impulse);
-
-            BoxCollider2D boxCollider = controller.GetComponent<BoxCollider2D>();
-            boxCollider.isTrigger = true;
-
+            if (!crush)
+            {
+                Rigidbody2D rigidbody2D = controller.GetComponent<Rigidbody2D>();
+                rigidbody2D.freezeRotation = false;
+                // åŠ›ã‚’åŠ ãˆã‚‹
+                Vector3 dir = new Vector3(impactDirOffset.x * 0.1f, Random.Range(minImpactY, maxImpactY), impactDirOffset.z);
+                rigidbody2D.AddForce(dir * power, ForceMode2D.Impulse);
+                // ãƒ©ãƒ³ãƒ€ãƒ ãªå›è»¢ã‚’åŠ ãˆã‚‹ï¼ˆæ­£ã¾ãŸã¯è² ã®ãƒˆãƒ«ã‚¯ï¼‰
+                float randomTorque = Random.Range(-torquePower, torquePower);
+                rigidbody2D.AddTorque(randomTorque, ForceMode2D.Impulse);
+                BoxCollider2D boxCollider = controller.GetComponent<BoxCollider2D>();
+                boxCollider.isTrigger = true;
+            }
+            else
+            {
+                movement.Disable();
+            }
         }
     }
 }

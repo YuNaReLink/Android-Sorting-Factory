@@ -27,7 +27,8 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 019a9756ec05b91408c710dd8ab3974e, type: 3}
     - {fileID: 21300000, guid: ae0faaddcbfb3d94b8e040ef496fe208, type: 3}
     - {fileID: 21300000, guid: 1ee364ea0cbf5224dad71d7333b122c8, type: 3}
-    effectFlag: 0
+    - {fileID: 21300000, guid: af2219e3f221d5e448770899bcad0fec, type: 3}
+    effectFlag: 1
   - type: 2
     image: {fileID: 0}
     images:

@@ -88,12 +88,17 @@ public class RobotMove : MonoBehaviour
         rb.velocity = Vector2.zero;
     }
 
-    private void OnBecameInvisible()
+    public void Disable()
     {
         gameObject.SetActive(false);
         OnFinishEvent?.Invoke(false);
 
         //ÉXÉRÉAí«â¡
         _gameManagerSO.OnAddScore?.Invoke();
+    }
+
+    private void OnBecameInvisible()
+    {
+        Disable();
     }
 }
