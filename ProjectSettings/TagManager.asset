@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Android
   - Water
   - UI
   - 
@@ -40,6 +40,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 3029903319
+    locked: 0
+  - name: Stage
+    uniqueID: 2040813399
     locked: 0
   - name: Android
     uniqueID: 3842639891

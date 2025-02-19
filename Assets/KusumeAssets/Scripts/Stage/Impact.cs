@@ -33,14 +33,6 @@ namespace Kusume
         [SerializeField]
         private LayerMask layerMask;
 
-        private void Start()
-        {
-            /*
-            leftRange = transform.position.x - (transform.localScale.x * 0.5f);
-            rightRange = transform.position.x + (transform.localScale.x * 0.5f);
-             */
-        }
-
         private void Update()
         {
             Ray2D ray = new Ray2D(transform.position + rayOffset, -Vector2.up); // Ray‚ğ¶¬A-transform.up‚Íis•ûŒü

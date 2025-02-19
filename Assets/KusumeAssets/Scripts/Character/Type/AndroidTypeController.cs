@@ -18,6 +18,9 @@ namespace Kusume
         [SerializeField]
         private new ParticleSystem  particleSystem;
 
+        [SerializeField]
+        private float               life;
+
         private void Awake()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,6 +41,7 @@ namespace Kusume
             {
                 particleSystem.gameObject.SetActive(false);
             }
+            life = info.life;
         }
 
         private void RandomSetEffect(AndroidLedgerInfo info)
@@ -50,6 +54,12 @@ namespace Kusume
             {
                 particleSystem.gameObject.SetActive(false);
             }
+        }
+
+        public bool AndroidLife()
+        {
+            life -= Time.deltaTime;
+            return life <= 0;
         }
     }
 }
