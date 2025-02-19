@@ -14,6 +14,10 @@ namespace hikido
         [SerializeField] private List<BGMSound> BGMSounds;
         [SerializeField] private List<SECategory> SECategorys;
 
+        [Header("Volumeä«óù")]
+        [SerializeField] public float masterVolume = 1.0f;
+        [SerializeField] public float bgmmasterVolume = 1.0f;
+        [SerializeField] public float semasterVolume = 1.0f;
 
 
         #region singleton
@@ -35,24 +39,22 @@ namespace hikido
 
 
         /// <summary> /// BGMÇÃí‚é~ /// </summary>
-        private void BGMStop()
+        public void BGMStop()
         {
             BGMSoruce.Stop();
         }
 
         /// <summary> /// BGMÇÃàÍéûí‚é~ /// </summary>
-        private void BGMPause()
+        public void BGMPause()
         {
             BGMSoruce.Pause();
         }
 
         /// <summary>Å@/// BGMÇÃçƒäJÅ@/// </summary>
-        private void BGMauPause()
+        public void BGMauPause()
         {
             BGMSoruce.UnPause();
         }
-
-
 
 
         /// <summary>
@@ -66,6 +68,7 @@ namespace hikido
             if (data != null)
             {
                 BGMSoruce.clip = data.bgmclip;
+                BGMSoruce.volume = data.bgmVolume * masterVolume * bgmmasterVolume;
                 BGMSoruce.Play();
             }
             else
@@ -90,7 +93,7 @@ namespace hikido
                 SESound date = category.sounds.Find(sound => sound.seData == se);
                 if (date != null)
                 {
-                    //SESource.volume = date.seVolume * masterVolume * semasterVolume;
+                    SESource.volume = date.seVolume * masterVolume * semasterVolume;
                     SESource.PlayOneShot(date.seclip);
                 }
                 else
@@ -119,7 +122,7 @@ namespace hikido
                 if (index >= 0 && index < category.sounds.Count)
                 {
                     SESound data = category.sounds[index];
-                    //SESource.volume = data.seVolume * masterVolume * semasterVolume;
+                    SESource.volume = data.seVolume * masterVolume * semasterVolume;
                     SESource.PlayOneShot(data.seclip);
                 }
                 else
@@ -151,6 +154,7 @@ namespace hikido
 
         public BGMDETA bgmData;
         public AudioClip bgmclip;
+        [Range(0f, 1f)] public float bgmVolume = 1;
 
     }
 
@@ -166,6 +170,7 @@ namespace hikido
         }
         public SEDATA seData;
         public AudioClip seclip;
+        [Range(0f, 1f)] public float seVolume = 1;
 
 
     }

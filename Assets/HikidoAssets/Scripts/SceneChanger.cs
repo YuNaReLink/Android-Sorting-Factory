@@ -8,7 +8,7 @@ namespace hikido
     public class SceneChanger : MonoBehaviour
     {
         [SerializeField] private float changeTime = 1.0f;
-
+        public string sceneName;
 
         //画面遷移
         public void ChangeGameScene(string sceneName)
@@ -19,9 +19,16 @@ namespace hikido
         
         private IEnumerator ChangeScene(string sceneName)
         {
-            SceneManager.LoadScene(sceneName);
             yield return changeTime;
+            SceneManager.LoadScene(sceneName);
         }  
+
+
+        //画面遷移のトランジション
+        private void ChangeSceneTransition()
+        {
+            //TODO: 画面遷移のトランジション
+        }
 
     }
 }

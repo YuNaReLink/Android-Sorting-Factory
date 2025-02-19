@@ -46,3 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManagerSO: {fileID: 11400000, guid: a15141ace3a756641afd98e6ad435a5a, type: 2}
   sceneChanger: {fileID: 0}
+  soundManager: {fileID: 0}
+  hpManager: {fileID: 0}
+  uIlabel: {fileID: 0}
+  upScore: 0
+  timeUpScore: 500

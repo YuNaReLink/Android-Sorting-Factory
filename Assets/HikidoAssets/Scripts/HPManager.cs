@@ -1,61 +1,74 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.UI;
 
 //TODO: リファクタリングする
 namespace hikido
 {
     public class HPManager : MonoBehaviour
     {
-        [SerializeField] private int CharactorHP = 0;
-        [SerializeField] private GameObject HeartObj;
 
-        /// <summary> /// リストとして管理 /// </summary>
-        private List<GameObject> playerHeartList = new List<GameObject>();
+        //キャラクターの最大体力
+        [SerializeField] private int charactorHP = 3;
+        private int  currentHP = 0;
+        private bool oneShotOut = false;
+        private bool endFlg = false;
+
+        [Header("HPImage")]
+        [SerializeField] private Image HPImage;
+        [SerializeField] private List<Sprite> hpSprite = new List<Sprite>();
 
         private void Start()
         {
-            CreateHeart();
+            currentHP = charactorHP;
+            UpdateHelth();
         }
 
-        /// <summary> /// ゲーム開始時にハートを生成 /// </summary>
-        private void CreateHeart()
+        private void Update()
         {
-            // 既存のハートアイコンをすべて削除
-            foreach (var heart in playerHeartList)
-            {
-                Destroy(heart);
-            }
-            playerHeartList.Clear();
-
-            // 最大体力分のハートアイコンを生成
-            for (int i = 0; i < CharactorHP; i++)
-            {
-                GameObject heart = Instantiate(HeartObj);
-                heart.transform.parent = transform;
-                playerHeartList.Add(heart);
-            }
+            //テスト用
+            //TakeDamage(1); 
         }
 
-        /// <summary> /// ハートの表示・非表示 /// </summary>
-        private void AstrengthDisplay()
+        public bool EndFlg()
         {
-            // すべてのハートアイコンを非表示にする
-            foreach (var heart in playerHeartList)
-            {
-                heart.SetActive(false);
-            }
-
-            // 現在の体力分のハートアイコンを表示
-            for (int i = 0; i < CharactorHP; i++)
-            {
-                if (i < playerHeartList.Count) // 配列の範囲内か確認
-                {
-                    playerHeartList[i].SetActive(true);
-                }
-            }
+            return endFlg;
         }
+       
+        //ダメージ
+        public void TakeDamage(int damage)
+        {
+            currentHP -= damage;
+
+            //CurrentHPの数値の範囲を限定(HP上限 3,下限 0)
+            currentHP = Mathf.Clamp(currentHP, 0, charactorHP);
+
+            //ダメージを受けたとき->体力バー変化
+            UpdateHelth();
+
+            if(currentHP == 0)
+            {
+                endFlg = true;
+                EndFlg();
+            }
+            
+        }
+
+        //HPバーの画像切り替え
+        private void UpdateHelth()
+        {
+            if(HPImage == null)
+            {
+                Debug.LogError("Imageがありません。");
+            }
+            //現在の体力に合わせて画像を変更
+            HPImage.sprite = hpSprite[currentHP];
+        }
+
 
     }
-
+       
 }
