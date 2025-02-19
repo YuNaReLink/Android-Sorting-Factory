@@ -12,6 +12,11 @@ public class GameManagerSO : ScriptableObject
     [Header("ƒtƒ‰ƒOŠÇ—")]
     public bool Ingameflg = false;
     public bool OutGameflg = false;
-    
-    
+
+    //score
+    public Action OnAddScore;
+
+    //damage
+    public Action<int> OnAddDamage;
+    public Action MistakeDamage;
 }

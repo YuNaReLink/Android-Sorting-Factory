@@ -12,7 +12,9 @@ namespace Kusume
     public class AndroidTypeController : MonoBehaviour
     {
         [SerializeField]
-        private AndroidType         type;
+        private  AndroidType         type;
+
+        public AndroidType Type => type;
 
         private SpriteRenderer      spriteRenderer;
         [SerializeField]

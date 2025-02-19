@@ -4,6 +4,7 @@ namespace Kusume
 {
     public class Impact : MonoBehaviour
     {
+
         [SerializeField]
         private Vector3 impactDirOffset = new Vector3(-1,1,0);
 
@@ -34,6 +35,7 @@ namespace Kusume
 
             BoxCollider2D boxCollider = controller.GetComponent<BoxCollider2D>();
             boxCollider.isTrigger = true;
+
         }
     }
 }

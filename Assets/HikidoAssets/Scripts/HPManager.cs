@@ -1,7 +1,10 @@
 using JetBrains.Annotations;
+using Kusume;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +23,8 @@ namespace hikido
         [Header("HPImage")]
         [SerializeField] private Image HPImage;
         [SerializeField] private List<Sprite> hpSprite = new List<Sprite>();
+        [SerializeField] private GameManagerSO _gameManagerSO;
+        [SerializeField] private AndroidTypeController _controller;
 
         private void Start()
         {
@@ -27,10 +32,27 @@ namespace hikido
             UpdateHelth();
         }
 
+        private void OnEnable()
+        {
+            _gameManagerSO.OnAddDamage += TakeDamage;
+            _gameManagerSO.MistakeDamage += MistakeImpact;
+        }
+
+        private void OnDisable()
+        {
+            _gameManagerSO.OnAddDamage -= TakeDamage;
+            _gameManagerSO.MistakeDamage -= MistakeImpact;
+        }
+        
         private void Update()
         {
             //テスト用
             //TakeDamage(1); 
+        }
+
+        public void MistakeImpact()
+        {
+            TakeDamage(1);
         }
 
         public bool EndFlg()
@@ -42,13 +64,14 @@ namespace hikido
         public void TakeDamage(int damage)
         {
             currentHP -= damage;
-
+           
             //CurrentHPの数値の範囲を限定(HP上限 3,下限 0)
             currentHP = Mathf.Clamp(currentHP, 0, charactorHP);
 
             //ダメージを受けたとき->体力バー変化
             UpdateHelth();
 
+    
             if(currentHP == 0)
             {
                 endFlg = true;
@@ -56,6 +79,8 @@ namespace hikido
             }
             
         }
+
+
 
         //HPバーの画像切り替え
         private void UpdateHelth()

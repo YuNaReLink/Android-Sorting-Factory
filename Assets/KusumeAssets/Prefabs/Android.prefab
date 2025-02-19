@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   goalPoint: {fileID: 0}
+  _gameManagerSO: {fileID: 11400000, guid: a15141ace3a756641afd98e6ad435a5a, type: 2}
 --- !u!1 &4716942509552173711
 GameObject:
   m_ObjectHideFlags: 0
