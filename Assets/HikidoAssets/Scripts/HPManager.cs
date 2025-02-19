@@ -26,9 +26,12 @@ namespace hikido
         [SerializeField]
         private EntryResultPanel entryResultPanel;
 
+        private ResultDataOutput output;
+
         private void Awake()
         {
             entryResultPanel = FindObjectOfType<EntryResultPanel>();
+            output = entryResultPanel.GetComponent<ResultDataOutput>();
         }
 
         private void Start()
@@ -84,6 +87,7 @@ namespace hikido
                 endFlg = true;
                 EndFlg();
                 entryResultPanel.gameObject.SetActive(true);
+                output.Output();
             }
             
         }

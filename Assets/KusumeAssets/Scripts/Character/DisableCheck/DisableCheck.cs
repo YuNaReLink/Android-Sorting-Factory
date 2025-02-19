@@ -1,3 +1,4 @@
+using hikido;
 using System;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ namespace Kusume
                 {
                     switch (controller.Type)
                     {
+                        case AndroidType.Normal:
+                            GameManager.AddNormalAndroidNumber();
+                            break;
                         case AndroidType.Bad:
                             _gameManagerSO.OnAddDamage?.Invoke(1);
                             break;
@@ -58,6 +62,7 @@ namespace Kusume
                 case AndroidType.VeryBad:
                     //スコア追加
                     _gameManagerSO.OnAddScore?.Invoke();
+                    GameManager.AddBadAndroidNumber();
                     break;
             }
         }
@@ -66,9 +71,6 @@ namespace Kusume
         {
             gameObject.SetActive(false);
             OnFinishEvent?.Invoke(false);
-
-            //スコア追加
-            _gameManagerSO.OnAddScore?.Invoke();
         }
     }
 }
