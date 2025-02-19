@@ -129,6 +129,7 @@ namespace Kusume
                 effectMachine.CreateEffect(controllers[i]);
                 DisableCheck disableCheck = controllers[i].GetComponent<DisableCheck>();
                 disableCheck.Disable();
+                disableCheck.NormalDamageCheck(controllers[i]);
                 controllers.RemoveAt(i);
             }
         }
