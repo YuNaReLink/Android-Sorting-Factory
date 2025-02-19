@@ -7,26 +7,26 @@ namespace Kusume
     {
         [Header("ゲーム実行時に位置を設定するか判別")]
         [SerializeField]
-        private bool startSettingFlag = false;
+        private bool        startSettingFlag = false;
         [Header("オブジェクトの元位置")]
         [SerializeField]
-        private Vector3 basePosition;
+        private Vector3     basePosition;
         [Header("オブジェクト移動先の位置Y")]
         [SerializeField]
-        private float verticalOffsetY;
+        private float       verticalOffsetY;
         [Header("移動スピード")]
         [SerializeField]
-        private float   speed;
+        private float       speed;
 
-        private Vector3 MovePosition => new Vector3(basePosition.x, basePosition.y + verticalOffsetY, basePosition.z);
+        private Vector3     MovePosition => new Vector3(basePosition.x, basePosition.y + verticalOffsetY, basePosition.z);
 
-        private bool   close;
+        private bool        close;
 
-        private Action onPressed;
+        private Action      onPressed;
 
-        private Action onRelease;
+        private Action      onRelease;
 
-        // Start is called before the first frame update
+
         private void Start()
         {
             if (startSettingFlag)
@@ -51,8 +51,7 @@ namespace Kusume
             onRelease -= OnRelease;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Update()
         {
             MoveDoor();
 
@@ -63,18 +62,18 @@ namespace Kusume
         {
             if (!close)
             {
-                transform.position = Vector3.Lerp(transform.position, MovePosition,speed * Time.deltaTime);
-                if((transform.position - MovePosition).magnitude <= 0.01f)
-                {
-                    transform.position = MovePosition;
-                }
-            }
-            else
-            {
                 transform.position = Vector3.Lerp(transform.position, basePosition, speed * Time.deltaTime);
                 if ((transform.position - basePosition).magnitude <= 0.01f)
                 {
                     transform.position = basePosition;
+                }
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(transform.position, MovePosition,speed * Time.deltaTime);
+                if((transform.position - MovePosition).magnitude <= 0.01f)
+                {
+                    transform.position = MovePosition;
                 }
             }
         }

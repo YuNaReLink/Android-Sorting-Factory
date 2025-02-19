@@ -30,7 +30,26 @@ namespace Kusume
             //画像を変更
             spriteRenderer.sprite = info.images[Random.Range(0, info.images.Length)];
             //エフェクトフラグを設定
-            particleSystem.gameObject.SetActive(info.effectFlag);
+            if (info.effectFlag)
+            {
+                RandomSetEffect(info);
+            }
+            else
+            {
+                particleSystem.gameObject.SetActive(false);
+            }
+        }
+
+        private void RandomSetEffect(AndroidLedgerInfo info)
+        {
+            if(Random.value > 0.5)
+            {
+                particleSystem.gameObject.SetActive(true);
+            }
+            else
+            {
+                particleSystem.gameObject.SetActive(false);
+            }
         }
     }
 }
