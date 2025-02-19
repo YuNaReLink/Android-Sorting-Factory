@@ -6,6 +6,7 @@ namespace Kusume
     public struct AndroidLedgerInfo
     {
         public AndroidType  type;
+        public float        life;
         public Sprite       image;
         public Sprite[]     images;
         public bool         effectFlag;

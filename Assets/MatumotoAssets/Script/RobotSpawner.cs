@@ -1,3 +1,4 @@
+using Kusume;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -25,6 +26,12 @@ public class RobotSpawner : MonoBehaviour
     [SerializeField]
     private Kusume.AndroidLedger androidLedger;
 
+    [SerializeField]
+    private float[] androidSpeeds;
+
+    [SerializeField]
+    private float androidSpeed;
+
 
     // List<RobotManage> robotObjectList = new List<RobotManage>();  
     //サポーターの方が書いてくださったコードを残しています
@@ -35,7 +42,9 @@ public class RobotSpawner : MonoBehaviour
       //  SetupPrefabs();
         StartCoroutine(StartWave());
        robots = new GameObject("RobotPut").transform;
-        
+
+
+        //androidSpeed = androidSpeeds[(int)GameLevelManager.GameLevel];
     }
     private void Update()
     {
@@ -84,6 +93,9 @@ public class RobotSpawner : MonoBehaviour
         Kusume.AndroidTypeController controller = t.GetComponent<Kusume.AndroidTypeController>();
         int num = UnityEngine.Random.Range(0, androidLedger.AndroidLedgerInfos.Length);
         controller.ChangeType(androidLedger.AndroidLedgerInfos[num]);
+
+        RobotMove robotMove = controller.GetComponent<RobotMove>();
+        //robot.Set
     }
 }
 
