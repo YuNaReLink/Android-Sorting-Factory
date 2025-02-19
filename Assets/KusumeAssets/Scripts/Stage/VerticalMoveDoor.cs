@@ -1,3 +1,4 @@
+using hikido;
 using System;
 using UnityEngine;
 
@@ -53,6 +54,7 @@ namespace Kusume
 
         private void Update()
         {
+            if (HPManager.IsEndFlag) { return; }
             MoveDoor();
 
             InputChangeUI();

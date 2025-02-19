@@ -7,8 +7,8 @@ namespace Kusume
     {
         public AndroidType  type;
         public float        life;
-        public Sprite       image;
         public Sprite[]     images;
+        public Sprite[]     scrapImage;
         public bool         effectFlag;
     }
     [CreateAssetMenu(fileName = "AndroidLedger", menuName = "Ledger/AndroidLedger", order = 1)]

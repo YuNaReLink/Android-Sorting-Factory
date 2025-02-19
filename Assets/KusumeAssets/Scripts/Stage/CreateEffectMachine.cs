@@ -48,12 +48,12 @@ namespace Kusume
             return Instantiate(particleSystem, pos, rotation, effects);
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+
+        public void CreateEffect(AndroidTypeController controller)
         {
-            AndroidTypeController controller = collision.gameObject.GetComponent<AndroidTypeController>();
             if (controller == null) { return; }
             if (!impact.Crush) { return; }
-            InitEffect(controller.transform.position,particleSystem.transform.rotation);
+            InitEffect(controller.transform.position, particleSystem.transform.rotation);
         }
     }
 }

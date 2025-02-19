@@ -1,16 +1,12 @@
 using Kusume;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class RobotMove : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 3f;
+    public void SetMoveSpeed(float speed) {  moveSpeed = speed; }
     [SerializeField] Transform goalPoint;
-    [SerializeField] private GameManagerSO _gameManagerSO;
 
     [SerializeField] AndroidTypeController _controller;
 
@@ -43,34 +39,10 @@ public class RobotMove : MonoBehaviour
     {
         stopFlag = false;
         boxCollider.isTrigger = false;
+        rb.gravityScale = 2;
         rb.freezeRotation = true;
     }
-    private void Update()
-    {
-        float dis = goalPoint.position.x - transform.position.x;
-        if (MathF.Abs(dis) <= 1f)
-        {
-            
-            gameObject.SetActive(false); 
-            OnFinishEvent?.Invoke(false);
 
-            //タイプで受けるダメージを変更
-            switch (_controller.Type)
-            {
-                case AndroidType.Normal:
-                    if (dmgflg) { _gameManagerSO.MistakeDamage?.Invoke(); }
-                    break;
-                case AndroidType.Bad:
-                    _gameManagerSO.OnAddDamage?.Invoke(1);
-                    break;
-                case AndroidType.VeryBad:
-                    _gameManagerSO.OnAddDamage?.Invoke(3);
-                    break;         
-            }
-            
-        }
-        
-    }
     private void FixedUpdate()
     {
         if (stopFlag){return;}
@@ -87,7 +59,7 @@ public class RobotMove : MonoBehaviour
         dmgflg = true;
         rb.velocity = Vector2.zero;
     }
-
+    /*
     public void Disable()
     {
         gameObject.SetActive(false);
@@ -96,9 +68,9 @@ public class RobotMove : MonoBehaviour
         //スコア追加
         _gameManagerSO.OnAddScore?.Invoke();
     }
-
     private void OnBecameInvisible()
     {
         Disable();
     }
+     */
 }
