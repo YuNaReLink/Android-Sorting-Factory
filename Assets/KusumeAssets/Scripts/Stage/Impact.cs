@@ -18,7 +18,7 @@ namespace Kusume
         {
             AndroidTypeController controller = collision.gameObject.GetComponent<AndroidTypeController>();
             if (controller == null) { return; }
-            Movement movement = controller.GetComponent<Movement>();
+            RobotMove movement = controller.GetComponent<RobotMove>();
             movement.Stop();
             movement.SetStopFlag(true);
 
