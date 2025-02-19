@@ -1,3 +1,4 @@
+using hikido;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,6 +49,7 @@ namespace Kusume
 
         private void Update()
         {
+            if (HPManager.IsEndFlag) { return; }
             InputChangeUI();
         }
 

@@ -1,10 +1,5 @@
-using JetBrains.Annotations;
 using Kusume;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,7 +13,8 @@ namespace hikido
         [SerializeField] private int charactorHP = 3;
         private int  currentHP = 0;
         private bool oneShotOut = false;
-        private bool endFlg = false;
+        private static bool endFlg = false;
+        public static bool IsEndFlag => endFlg;
 
         [Header("HPImage")]
         [SerializeField] private Image HPImage;
@@ -26,8 +22,19 @@ namespace hikido
         [SerializeField] private GameManagerSO _gameManagerSO;
         [SerializeField] private AndroidTypeController _controller;
 
+        /*è≠Çµí«â¡ÇµÇ‹ÇµÇΩ(byìÌñ⁄)*/
+        [SerializeField]
+        private EntryResultPanel entryResultPanel;
+
+        private void Awake()
+        {
+            entryResultPanel = FindObjectOfType<EntryResultPanel>();
+        }
+
         private void Start()
         {
+            entryResultPanel.gameObject.SetActive(false);
+
             currentHP = charactorHP;
             UpdateHelth();
         }
@@ -76,6 +83,7 @@ namespace hikido
             {
                 endFlg = true;
                 EndFlg();
+                entryResultPanel.gameObject.SetActive(true);
             }
             
         }

@@ -20,17 +20,20 @@ public class RobotSpawner : MonoBehaviour
     [SerializeField] GameObject robot = null;
     //弾を保持（プーリング）する空のオブジェクト
     Transform robots;
+    public Transform RobotsParent => robots;
 
     List<GameObject> objectList = new List<GameObject>();
     
     [SerializeField]
     private Kusume.AndroidLedger androidLedger;
 
-    [SerializeField]
-    private float[] androidSpeeds;
 
     [SerializeField]
     private float androidSpeed;
+
+    [SerializeField]
+    private bool moveflag;
+    public void SetMoveFlag(bool stop) {  moveflag = stop; }
 
 
     // List<RobotManage> robotObjectList = new List<RobotManage>();  
@@ -43,11 +46,15 @@ public class RobotSpawner : MonoBehaviour
         StartCoroutine(StartWave());
        robots = new GameObject("RobotPut").transform;
 
+        moveflag = true;
 
-        //androidSpeed = androidSpeeds[(int)GameLevelManager.GameLevel];
+        androidSpeed = GameLevelManager.AndroidSpeeds[(int)GameLevelManager.GameLevel];
+
+        spawnInterval = GameLevelManager.SpawnInterval[(int)GameLevelManager.GameLevel];
     }
     private void Update()
     {
+        if (!moveflag) { return; }
         timeSinceLastSpawn += Time.deltaTime;
         if (!isSpawning) { return; }
         if (spawnInterval < timeSinceLastSpawn)
@@ -95,7 +102,7 @@ public class RobotSpawner : MonoBehaviour
         controller.ChangeType(androidLedger.AndroidLedgerInfos[num]);
 
         RobotMove robotMove = controller.GetComponent<RobotMove>();
-        //robot.Set
+        robotMove.SetMoveSpeed(androidSpeed);
     }
 }
 
