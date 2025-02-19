@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5495936085213515612}
   - component: {fileID: 4384262182105485531}
   - component: {fileID: 2978945016640155948}
-  - component: {fileID: 6835491795982077402}
+  - component: {fileID: 753196099505701331}
   m_Layer: 0
   m_Name: Android
   m_TagString: Untagged
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   particleSystem: {fileID: 4328798254846694298}
---- !u!114 &6835491795982077402
+--- !u!114 &753196099505701331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,10 +184,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4363071178706945282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff12e1e3a9e29e4d9da6472f270b677, type: 3}
+  m_Script: {fileID: 11500000, guid: 7574357bb1d989a47beeb2354430187c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  moveSpeed: 3
+  goalPoint: {fileID: 0}
 --- !u!1 &4716942509552173711
 GameObject:
   m_ObjectHideFlags: 0
