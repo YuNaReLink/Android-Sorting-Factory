@@ -130,7 +130,7 @@ namespace hikido
                     //3位
                     case 3:
                         uilabel.RankingTop_3.text = displayScore;
-                        uilabel.Ranking_AliveTimeTop_3.text = displayAliveTime;
+                        uilabel.Ranking_AliveTimeTop_3.text = (min + ":" + displayAliveTime);
                         break;
                 }
             }

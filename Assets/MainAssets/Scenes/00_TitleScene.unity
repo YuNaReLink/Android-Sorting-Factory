@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranking
       objectReference: {fileID: 0}
+    - target: {fileID: 3287576842009191949, guid: 14139b536edb5944885e3219c6fcf48c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6228959223028569733, guid: 14139b536edb5944885e3219c6fcf48c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 267
@@ -766,6 +770,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da445989979fd84f90107a721018803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &455391967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3287576842009191949, guid: 14139b536edb5944885e3219c6fcf48c, type: 3}
+  m_PrefabInstance: {fileID: 25916882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &456864908
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,7 +1674,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1127823184}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1127823187}
+        m_TargetAssemblyTypeName: Kusume.ChangeUILayout, Assembly-CSharp
+        m_MethodName: DispRanking
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1127823184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,6 +1752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeToUI: {fileID: 0}
+  ranking: {fileID: 455391967}
 --- !u!114 &1127823188
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2554,7 +2576,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1006035762836837839, guid: 14139b536edb5944885e3219c6fcf48c, type: 3}
   m_PrefabInstance: {fileID: 25916882}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 455391967}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ff0ce858e9183d448a64c20605756e8, type: 3}

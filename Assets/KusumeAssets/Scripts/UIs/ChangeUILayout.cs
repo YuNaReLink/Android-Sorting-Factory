@@ -10,6 +10,8 @@ namespace Kusume
         [SerializeField]
         private ChangeToUI  changeToUI;
 
+        [SerializeField] GameObject ranking;
+
         private void Awake()
         {
             button = GetComponent<Button>();
@@ -22,6 +24,10 @@ namespace Kusume
             changeToUI.gameObject.SetActive(false);
         }
 
+        public void DispRanking()
+        {
+            ranking.SetActive(true);
+        }
 
         private void ChangeUI()
         {
