@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,16 +20,24 @@ namespace Kusume
         private Vector2     selectImageOffset;
 
         private Timer       decideTimer = new Timer();
-        [SerializeField]
-        private float       count = 0.2f;
+
+        private float       count = 0.5f;
 
         private void Awake()
         {
             buttons = GetComponentsInChildren<Button>();
         }
 
+        private IEnumerator InputActivate()
+        {
+            InputManager.SetInputFlag(false);
+            yield return new WaitForSecondsRealtime(0.5f);
+            InputManager.SetInputFlag(true);
+        }
+
         private void OnEnable()
         {
+            StartCoroutine(InputActivate());
             decideTimer.OnEnd += ChangeButton;
         }
 
@@ -39,6 +48,7 @@ namespace Kusume
 
         private void Update()
         {
+            if (!InputManager.InputFlag) { return; }
             decideTimer.Update(Time.deltaTime);
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -49,6 +59,11 @@ namespace Kusume
             if (Input.GetKey(KeyCode.Space))
             {
                 DecideCheck();
+            }
+
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                decideTimer.End();
             }
         }
 

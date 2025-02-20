@@ -54,9 +54,9 @@ namespace Kusume
 
         private void Update()
         {
-            if (HPManager.IsEndFlag) { return; }
             MoveDoor();
 
+            if (HPManager.IsEndFlag) { return; }
             InputChangeUI();
         }
 

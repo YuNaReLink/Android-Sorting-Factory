@@ -1,5 +1,6 @@
 using hikido;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,8 +36,16 @@ namespace Kusume
             buttonImage.sprite = normalImage;
 
         }
+
+        private IEnumerator InputActivate()
+        {
+            InputManager.SetInputFlag(false);
+            yield return new WaitForSecondsRealtime(0.5f);
+            InputManager.SetInputFlag(true);
+        }
         private void OnEnable()
         {
+            StartCoroutine(InputActivate());
             onPressed += OnPressed;
             onRelease += OnRelease;
         }
@@ -49,6 +58,7 @@ namespace Kusume
 
         private void Update()
         {
+            if (!InputManager.InputFlag) { return; }
             if (HPManager.IsEndFlag) { return; }
             InputChangeUI();
         }

@@ -52,7 +52,13 @@ namespace Kusume
                 else
                 {
                     rigidbody2D.gravityScale = 2;
-                    //BeltConveyorController.Instance.AllMoveActivate(true);
+
+                    RobotMove movement = GetComponent<RobotMove>();
+                    movement.Stop();
+                    movement.SetStopFlag(true);
+
+                    BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+                    boxCollider.isTrigger = false;
                 }
             }
         }

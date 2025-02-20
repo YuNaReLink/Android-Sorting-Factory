@@ -54,12 +54,8 @@ namespace hikido
         {
             _gameManagerSO.OnAddDamage -= TakeDamage;
             _gameManagerSO.MistakeDamage -= MistakeImpact;
-        }
-        
-        private void Update()
-        {
-            //テスト用
-            //TakeDamage(1); 
+
+            endFlg = false;
         }
 
         public void MistakeImpact()
@@ -108,8 +104,6 @@ namespace hikido
             //現在の体力に合わせて画像を変更
             HPImage.sprite = hpSprite[currentHP];
         }
-
-
     }
        
 }
