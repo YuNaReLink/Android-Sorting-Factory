@@ -52,7 +52,7 @@ namespace Kusume
                 else
                 {
                     rigidbody2D.gravityScale = 2;
-                    BeltConveyorController.Instance.AllMoveActivate(true);
+                    //BeltConveyorController.Instance.AllMoveActivate(true);
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace Kusume
             if(life < 0)
             {
                 rigidbody2D.gravityScale = 2;
-                BeltConveyorController.Instance.AllMoveActivate(true);
+                //BeltConveyorController.Instance.AllMoveActivate(true);
                 BeltConveyorController.Instance.LongCrush();
             }
         }

@@ -157,7 +157,7 @@ namespace Kusume
                 movement.Stop();
                 movement.SetStopFlag(true);
 
-                BeltConveyorController.Instance.AllMoveActivate(false);
+                //BeltConveyorController.Instance.AllMoveActivate(false);
                 BoxCollider2D boxCollider = controller.GetComponent<BoxCollider2D>();
                 boxCollider.isTrigger = true;
             }

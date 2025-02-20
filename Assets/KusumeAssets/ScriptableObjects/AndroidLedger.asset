@@ -40,7 +40,7 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 04441049004bc9248b6e6e5b02964b59, type: 3}
     effectFlag: 1
   - type: 2
-    life: 1
+    life: 0.5
     images:
     - {fileID: 21300000, guid: 186eb125eb37cb74c9a1656c5e7ebced, type: 3}
     scrapImage:
