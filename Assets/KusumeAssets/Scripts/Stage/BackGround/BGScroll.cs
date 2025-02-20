@@ -10,7 +10,7 @@ namespace CreateScript
     {
         //背景をスクロールさせるスピード
         [SerializeField] 
-        private float           scrollSpeed; 
+        private float           scrollSpeed;
         //背景のスクロールを開始する位置
         [SerializeField] 
         private float           startLine;
@@ -27,8 +27,15 @@ namespace CreateScript
         [SerializeField]
         private bool left;
 
+        [SerializeField]
+        private bool            scrollMove = true;
+        public void SetScrollStop(bool stop) { scrollMove = stop; }
+
+        public void SetScrollSpeed(float speed) { scrollSpeed = speed; }
+
         private void Update()
         {
+            if (!scrollMove) { return; }
             for(int i = 0;i < backGrounds.Length; i++)
             {
                 Scroll(i);

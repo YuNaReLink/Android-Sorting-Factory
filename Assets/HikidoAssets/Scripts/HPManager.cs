@@ -1,24 +1,20 @@
-using JetBrains.Annotations;
 using Kusume;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-//TODO: ƒŠƒtƒ@ƒNƒ^ƒŠƒ“ƒO‚·‚é
+//TODO: ãƒªãƒ•ã‚¡ã‚¯ã‚¿ãƒªãƒ³ã‚°ã™ã‚‹
 namespace hikido
 {
     public class HPManager : MonoBehaviour
     {
 
-        //ƒLƒƒƒ‰ƒNƒ^[‚ÌÅ‘å‘Ì—Í
+        //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã®æœ€å¤§ä½“åŠ›
         [SerializeField] private int charactorHP = 3;
         private int  currentHP = 0;
         private bool oneShotOut = false;
-        private bool endFlg = false;
+        private static bool endFlg = false;
+        public static bool IsEndFlag => endFlg;
 
         [Header("HPImage")]
         [SerializeField] private Image HPImage;
@@ -26,8 +22,22 @@ namespace hikido
         [SerializeField] private GameManagerSO _gameManagerSO;
         [SerializeField] private AndroidTypeController _controller;
 
+        /*å°‘ã—è¿½åŠ ã—ã¾ã—ãŸ(byæ¥ ç›®)*/
+        [SerializeField]
+        private EntryResultPanel entryResultPanel;
+
+        private ResultDataOutput output;
+
+        private void Awake()
+        {
+            entryResultPanel = FindObjectOfType<EntryResultPanel>();
+            output = entryResultPanel.GetComponent<ResultDataOutput>();
+        }
+
         private void Start()
         {
+            entryResultPanel.gameObject.SetActive(false);
+
             currentHP = charactorHP;
             UpdateHelth();
         }
@@ -46,7 +56,7 @@ namespace hikido
         
         private void Update()
         {
-            //ƒeƒXƒg—p
+            //ãƒ†ã‚¹ãƒˆç”¨
             //TakeDamage(1); 
         }
 
@@ -60,15 +70,15 @@ namespace hikido
             return endFlg;
         }
        
-        //ƒ_ƒ[ƒW
+        //ãƒ€ãƒ¡ãƒ¼ã‚¸
         public void TakeDamage(int damage)
         {
             currentHP -= damage;
            
-            //CurrentHP‚Ì”’l‚Ì”ÍˆÍ‚ğŒÀ’è(HPãŒÀ 3,‰ºŒÀ 0)
+            //CurrentHPã®æ•°å€¤ã®ç¯„å›²ã‚’é™å®š(HPä¸Šé™ 3,ä¸‹é™ 0)
             currentHP = Mathf.Clamp(currentHP, 0, charactorHP);
 
-            //ƒ_ƒ[ƒW‚ğó‚¯‚½‚Æ‚«->‘Ì—Íƒo[•Ï‰»
+            //ãƒ€ãƒ¡ãƒ¼ã‚¸ã‚’å—ã‘ãŸã¨ã->ä½“åŠ›ãƒãƒ¼å¤‰åŒ–
             UpdateHelth();
 
     
@@ -77,20 +87,23 @@ namespace hikido
                 endFlg = true;
                 EndFlg();
                 _gameManagerSO.OutGame?.Invoke();
+                entryResultPanel.gameObject.SetActive(true);
+                output.Output();
+
             }
             
         }
 
 
 
-        //HPƒo[‚Ì‰æ‘œØ‚è‘Ö‚¦
+        //HPãƒãƒ¼ã®ç”»åƒåˆ‡ã‚Šæ›¿ãˆ
         private void UpdateHelth()
         {
             if(HPImage == null)
             {
-                Debug.LogError("Image‚ª‚ ‚è‚Ü‚¹‚ñB");
+                Debug.LogError("ImageãŒã‚ã‚Šã¾ã›ã‚“ã€‚");
             }
-            //Œ»İ‚Ì‘Ì—Í‚É‡‚í‚¹‚Ä‰æ‘œ‚ğ•ÏX
+            //ç¾åœ¨ã®ä½“åŠ›ã«åˆã‚ã›ã¦ç”»åƒã‚’å¤‰æ›´
             HPImage.sprite = hpSprite[currentHP];
         }
 

@@ -47,7 +47,9 @@ MonoBehaviour:
   charactorHP: 3
   HPImage: {fileID: 0}
   hpSprite:
-  - {fileID: -595163575, guid: 420f169762b15f64c9c61641395bf415, type: 3}
-  - {fileID: 1491626326, guid: 60656beac22bfdd4fa78c66f2312cebb, type: 3}
-  - {fileID: 1595397789, guid: b24c1c36698eb0145a9bbd42360c194f, type: 3}
-  - {fileID: 1709729252, guid: ac9f40c7a32ee8544a25ae921a87ae0a, type: 3}
+  - {fileID: 21300000, guid: 75787c5b134f631458a5108c40dbf55b, type: 3}
+  - {fileID: 21300000, guid: 8ff7dadd00e6f7145977f887723c87c9, type: 3}
+  - {fileID: 21300000, guid: 0e5518516ef47b343914638cf4220431, type: 3}
+  - {fileID: 21300000, guid: 8ccba05a0ac28994198b98bb0f0c2baf, type: 3}
+  _gameManagerSO: {fileID: 11400000, guid: a15141ace3a756641afd98e6ad435a5a, type: 2}
+  _controller: {fileID: 0}

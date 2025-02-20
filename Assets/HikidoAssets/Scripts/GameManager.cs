@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace hikido
 {
@@ -28,9 +29,27 @@ namespace hikido
         public static int totalScore = 0;
         
 
+
         [Header("スコア用フラグ")]
         private bool endFlg = false;
 
+        /*ここから追加しました（by楠目）*/
+        [Header("スコア用UI")]
+        [SerializeField]
+        private Text ScoreText;
+
+        private static int  normalAndroidNumber;
+
+        private static int  badAndroidNumber;
+
+        public static int   NormalAndroidNumber => normalAndroidNumber;
+
+        public static void AddNormalAndroidNumber() {  normalAndroidNumber++; }
+
+        public static int   BadAndroidNumber => badAndroidNumber;
+        public static void AddBadAndroidNumber() { badAndroidNumber++; }
+
+        public static int TotalScore => totalScore;
 
         //スタート時にActionに関数を設定
         private void Start()
@@ -98,14 +117,14 @@ namespace hikido
         /// <summary> /// スコアの加算 /// </summary>
         private void ScoreUP()
         {
-            totalScore += upScore;
+            //totalScore += upScore;
             //ingame時のみスコアを加算
             if (gameManagerSO.Ingameflg)
             {
                 //enumでキャラクタータイプを設定している
                 //アンドロイドをはじくとスコア加算
                 //条件文
-                    //totalScore += upScore;
+                totalScore += upScore;
             }
             else if(endFlg) 
             {
@@ -113,7 +132,12 @@ namespace hikido
                 CancelInvoke();
 
             }
+            ScoreUI(totalScore);
+        }
 
+        private void ScoreUI(int score)
+        {
+            ScoreText.text = totalScore.ToString();
         }
 
         /// <summary> /// スコアを初期化 /// </summary>

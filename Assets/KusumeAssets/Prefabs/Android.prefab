@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4384262182105485531}
   - component: {fileID: 2978945016640155948}
   - component: {fileID: 753196099505701331}
+  - component: {fileID: 6194171965280822033}
   m_Layer: 3
   m_Name: Android
   m_TagString: Untagged
@@ -175,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   particleSystem: {fileID: 4328798254846694298}
+  life: 0
 --- !u!114 &753196099505701331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +191,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   goalPoint: {fileID: 0}
+  _gameManagerSO: {fileID: 11400000, guid: a15141ace3a756641afd98e6ad435a5a, type: 2}
+  _controller: {fileID: 0}
+--- !u!114 &6194171965280822033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363071178706945282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 463eee030dc6c4649a4df771524d009a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _gameManagerSO: {fileID: 11400000, guid: a15141ace3a756641afd98e6ad435a5a, type: 2}
 --- !u!1 &4716942509552173711
 GameObject:
