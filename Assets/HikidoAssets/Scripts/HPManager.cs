@@ -40,6 +40,8 @@ namespace hikido
 
             currentHP = charactorHP;
             UpdateHelth();
+
+            endFlg = false;
         }
 
         private void OnEnable()
