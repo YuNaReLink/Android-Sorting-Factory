@@ -90,6 +90,7 @@ public class RobotSpawner : MonoBehaviour
         {
             InstRobot(transform.position, transform.rotation);
             timeSinceLastSpawn = 0;
+            spawnInterval = 2.5f;
         }
         else
         {
@@ -97,10 +98,11 @@ public class RobotSpawner : MonoBehaviour
             InstConsecutiveRobot(transform.position, transform.rotation);
             consecutiveSpawnIntervalTimer.Start(consecutiveSpawnInterval);
             consecutiveSpawnCount--;
-            if(consecutiveSpawnCount == 0)
+            if(consecutiveSpawnCount <= 0)
             {
                 isSpawning = true;
                 timeSinceLastSpawn = 0;
+                spawnInterval = GameLevelManager.SpawnInterval[(int)GameLevelManager.GameLevel];
             }
         }
     }

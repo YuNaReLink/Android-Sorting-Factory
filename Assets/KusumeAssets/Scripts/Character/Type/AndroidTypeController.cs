@@ -87,6 +87,7 @@ namespace Kusume
         {
             spriteRenderer.sprite = scrapSprite;
             type = AndroidType.Scrap;
+            transform.localScale = Vector3.one;
         }
 
         private void RandomSetEffect(AndroidLedgerInfo info)
