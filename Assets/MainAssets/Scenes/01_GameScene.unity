@@ -1026,7 +1026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9146577474812122749, guid: f4ed72a3c4c428847b81a9cf4d68ad58, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1693,12 +1693,12 @@ RectTransform:
   m_Children:
   - {fileID: 240223000}
   - {fileID: 506112580}
+  - {fileID: 1325140084}
   - {fileID: 2047858315}
   - {fileID: 1753431957}
   - {fileID: 1735402201}
   - {fileID: 435128536}
   - {fileID: 1571858522}
-  - {fileID: 1325140084}
   - {fileID: 386655993}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2226,7 +2226,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1325140084
 RectTransform:
   m_ObjectHideFlags: 0
