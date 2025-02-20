@@ -1,11 +1,14 @@
+using hikido;
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Kusume
 {
     /*
-     * 複数あるボタンをSPACEで変更して決定を行うクラス
+     * 隍�謨ｰ縺ゅｋ繝懊ち繝ｳ繧担PACE縺ｧ螟画峩縺励※豎ｺ螳壹ｒ陦後≧繧ｯ繝ｩ繧ｹ
      */
     public class ButtonsController : MonoBehaviour
     {
@@ -16,8 +19,8 @@ namespace Kusume
         [SerializeField]
         private Image       selectImage;
 
-        [SerializeField] 
-        private GameManagerSO gameManager;
+        [SerializeField]
+        public static SoundManager soundManager;
 
         [SerializeField]
         private Vector2     selectImageOffset;
@@ -57,7 +60,7 @@ namespace Kusume
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 decideTimer.Start(count);
-                gameManager.CheckSE?.Invoke();
+                SoundManager.SelectCheckSE();
             }
 
             if (Input.GetKey(KeyCode.Space))

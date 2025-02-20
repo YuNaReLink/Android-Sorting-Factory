@@ -83,12 +83,14 @@ namespace hikido
         {
             gameManagerSO.OnAddScore += ScoreUP;
             gameManagerSO.OutGame += EndGgme;
+            gameManagerSO.OutGame += ResetScore;
         }
 
         private void OnDisable()
         {
             gameManagerSO.OnAddScore -= ScoreUP;
             gameManagerSO.OutGame -= EndGgme;
+            gameManagerSO.OutGame -= ResetScore;
         }
 
         /// <summary>　/// 難易度選択後　/// </summary>
@@ -124,10 +126,6 @@ namespace hikido
                 //aliveTimeの保存
                 _rankingManager.SaveAliveTime(aliveTime);
                 Debug.Log(aliveTime + "現在のタイム ");
-
-                //test
-                //SceneManager.LoadScene("00_TitleScene_hikido");
-
             }
         }
 

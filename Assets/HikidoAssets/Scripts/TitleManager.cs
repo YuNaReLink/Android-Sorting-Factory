@@ -14,7 +14,7 @@ namespace hikido
         private void Start()
         {
             //ゲームスタート時にBGM開始
-            Invoke("soundManager.StartBGMTIlte", delayTime);
+           soundManager.StartBGMTIlte();
 
             //テスト用ランキングリセット
             //_rankingManager.ResetRanking();
@@ -26,7 +26,7 @@ namespace hikido
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                soundManager.BGMStop();
+                //soundManager.BGMStop();
             }
         }
 

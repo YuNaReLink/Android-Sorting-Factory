@@ -88,6 +88,7 @@ namespace hikido
                 EndFlg();
                 _gameManagerSO.OutGame?.Invoke();
                 entryResultPanel.gameObject.SetActive(true);
+                
                 output.Output();
 
             }
