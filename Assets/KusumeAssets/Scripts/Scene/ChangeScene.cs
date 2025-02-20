@@ -33,7 +33,7 @@ namespace Kusume
             StartCoroutine(Fade.Instance.FadeOut(0, 1.5f, () =>
             {
                 
-            string name = "00_TitleScene";
+                string name = "00_TitleScene";
            
                 switch (sceneList)
                 {
@@ -45,7 +45,7 @@ namespace Kusume
                         break;
                 }
 
-            SceneChanger.LoadScene(name);
+                SceneChanger.LoadScene(name);
             }
               ));
 

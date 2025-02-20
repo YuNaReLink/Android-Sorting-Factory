@@ -125,11 +125,13 @@ namespace Kusume
             crush = true;
             for(int i = 0; i < controllers.Count; i++)
             {
+                RobotMove movement = controllers[i].GetComponent<RobotMove>();
+                movement.SetStopFlag(false);
                 AddImpact(controllers[i]);
                 effectMachine.CreateEffect(controllers[i]);
                 DisableCheck disableCheck = controllers[i].GetComponent<DisableCheck>();
-                disableCheck.Disable();
                 disableCheck.NormalDamageCheck(controllers[i]);
+                controller.ChangeScrap();
                 controllers.RemoveAt(i);
             }
         }
@@ -160,6 +162,8 @@ namespace Kusume
                 //BeltConveyorController.Instance.AllMoveActivate(false);
                 BoxCollider2D boxCollider = controller.GetComponent<BoxCollider2D>();
                 boxCollider.isTrigger = true;
+
+                controller.transform.localScale = new Vector3(controller.transform.localScale.x, 0.5f, controller.transform.localScale.z);
             }
             else
             {

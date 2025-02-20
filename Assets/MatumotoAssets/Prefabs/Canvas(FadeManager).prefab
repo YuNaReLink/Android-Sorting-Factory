@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -14.3041, y: -10.5213}
+  m_AnchoredPosition: {x: -14.304077, y: -10.521301}
   m_SizeDelta: {x: 74.6817, y: 78.1009}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2963045707947300369
@@ -193,4 +193,5 @@ MonoBehaviour:
   fadeCanvas: {fileID: 3428889169050616057}
   defaultFadeDuration: 1
   fadeImagies:
+  - {fileID: 3878977002500711739}
   - {fileID: 3878977002500711739}

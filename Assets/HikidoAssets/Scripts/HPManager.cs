@@ -71,6 +71,8 @@ namespace hikido
         //ダメージ
         public void TakeDamage(int damage)
         {
+            StartCoroutine(Fade.Instance.FadeIn(1,0.2f));
+
             currentHP -= damage;
            
             //CurrentHPの数値の範囲を限定(HP上限 3,下限 0)
