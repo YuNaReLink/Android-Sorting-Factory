@@ -27,16 +27,18 @@ public class Fade : MonoBehaviour
 
         fadeCanvas.enabled = false;
     }
-    public void FadeOut(int cl, float duration = 1f, Action onComplete = null)
+    public IEnumerator FadeOut(int cl, float duration = 1f, Action onComplete = null)
     {
         float fadeDuration = duration > 0f ? duration : defaultFadeDuration;
-        StartCoroutine(Fading(cl, 0f, 1f, fadeDuration, onComplete));
+        yield return StartCoroutine(Fading(cl, 0f, 1f, fadeDuration, onComplete));
+        onComplete?.Invoke(); //ŠÖ”‚É‰¿‚ª“ü‚Á‚Ä‚¢‚é‚ÆÀs}
     }
 
-    public void FadeIn(int cl, float duration = 1f, Action onComplete = null)
+    public IEnumerator FadeIn(int cl, float duration = 1f, Action onComplete = null)
     {
         float fadeDuration = duration > 0f ? duration : defaultFadeDuration;
-        StartCoroutine(Fading(cl, 1f, 0f, fadeDuration, onComplete));
+        yield return StartCoroutine(Fading(cl, 1f, 0f, fadeDuration, onComplete));
+        onComplete?.Invoke(); //ŠÖ”‚É‰¿‚ª“ü‚Á‚Ä‚¢‚é‚ÆÀs
     }
     public void Equip(int cl, float duration = 1f, Action onComplete = null)
     {
@@ -73,7 +75,6 @@ public class Fade : MonoBehaviour
         {
             fadeCanvas.enabled = false;
         }
-        onComplete?.Invoke(); //ŠÖ”‚É‰¿‚ª“ü‚Á‚Ä‚¢‚é‚ÆÀs
     }
 
 }
