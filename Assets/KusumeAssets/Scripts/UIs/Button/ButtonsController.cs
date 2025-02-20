@@ -76,12 +76,14 @@ namespace Kusume
             if (decideTimer.IsEnd())
             {
                 buttons[buttonIndex].onClick?.Invoke();
+                InputManager.SetInputFlag(true);
             }
         }
 
         private void ChangeButton()
         {
             if (Input.GetKey(KeyCode.Space)) { return; }
+            if (InputManager.InputFlag) { return; }
             buttonIndex++;
             if(buttonIndex > buttons.Length - 1)
             {
