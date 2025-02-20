@@ -49,7 +49,7 @@ namespace Kusume
         private CreateEffectMachine effectMachine;
 
         private AndroidTypeController controller;
-
+        [SerializeField]
         private List<AndroidTypeController> controllers = new List<AndroidTypeController>();
 
         private void Awake()
@@ -132,8 +132,8 @@ namespace Kusume
                 DisableCheck disableCheck = controllers[i].GetComponent<DisableCheck>();
                 disableCheck.NormalDamageCheck(controllers[i]);
                 controller.ChangeScrap();
-                controllers.RemoveAt(i);
             }
+            controllers.Clear();
         }
 
         void AddUnique(AndroidTypeController number)
@@ -171,6 +171,8 @@ namespace Kusume
                 effectMachine.CreateEffect(controller);
             }
         }
+        /*
+         */
         private void OnCollisionExit2D(Collision2D collision)
         {
             controller = collision.gameObject.GetComponent<AndroidTypeController>();
@@ -180,7 +182,6 @@ namespace Kusume
                 Rigidbody2D rigidbody2D = controller.GetComponent<Rigidbody2D>();
                 rigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                 RobotMove movement = controller.GetComponent<RobotMove>();
-                movement.Stop();
                 movement.SetStopFlag(false);
             }
         }

@@ -74,6 +74,8 @@ namespace hikido
             IngameStart();
 
             totalScore = 0;
+            normalAndroidNumber = 0;
+            badAndroidNumber = 0;
         }
 
         private void OnEnable()

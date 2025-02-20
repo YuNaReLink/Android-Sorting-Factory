@@ -71,6 +71,7 @@ namespace hikido
         //ダメージ
         public void TakeDamage(int damage)
         {
+            if (endFlg) { return; }
             StartCoroutine(Fade.Instance.FadeIn(1,0.2f));
 
             currentHP -= damage;

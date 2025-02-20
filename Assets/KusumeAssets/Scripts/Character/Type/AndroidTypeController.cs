@@ -54,8 +54,7 @@ namespace Kusume
                     rigidbody2D.gravityScale = 2;
 
                     RobotMove movement = GetComponent<RobotMove>();
-                    movement.Stop();
-                    movement.SetStopFlag(true);
+                    movement.SetStopFlag(false);
 
                     BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
                     boxCollider.isTrigger = false;
