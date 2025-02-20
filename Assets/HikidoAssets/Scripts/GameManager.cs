@@ -21,6 +21,8 @@ namespace hikido
         //合計スコア
         public static int totalScore = 0;
 
+        private static int resultScore = 0;
+
 
         //生存時間用のタイム
         public static float aliveTime = 0;
@@ -48,6 +50,8 @@ namespace hikido
 
         public static int TotalScore => totalScore;
 
+        public static int ResultScore => resultScore;
+
         public static float AliveTime => aliveTime;
 
         private void Awake()
@@ -65,6 +69,7 @@ namespace hikido
             //InvokeRepeating("TimeCountUP", 0.0f, 1.0f);
             IngameStart();
             totalScore = 0;
+            resultScore = 0;
             aliveTime = 0;
         }
 
@@ -141,27 +146,20 @@ namespace hikido
         /// <summary> /// スコアの加算 /// </summary>
         private void ScoreUP()
         {
+
             totalScore += upScore;
             //ingame時のみスコアを加算
-            if (gameManagerSO.Ingameflg)
-            {
-                //enumでキャラクタータイプを設定している
-                //アンドロイドをはじくとスコア加算
-                //条件文
-                totalScore += upScore;
-            }
-            else if(endFlg) 
-            {
-                //時間経過によるスコア加算を止める
-                CancelInvoke();
-
-            }
-            ScoreUI(totalScore);
+            //enumでキャラクタータイプを設定している
+            //アンドロイドをはじくとスコア加算
+            //条件文
+            totalScore += upScore;
+            resultScore = totalScore;
+            ScoreUI(resultScore);
         }
 
         private void ScoreUI(int score)
         {
-            ScoreText.text = totalScore.ToString();
+            ScoreText.text = score.ToString();
         }
 
         /// <summary> /// スコアを初期化 /// </summary>

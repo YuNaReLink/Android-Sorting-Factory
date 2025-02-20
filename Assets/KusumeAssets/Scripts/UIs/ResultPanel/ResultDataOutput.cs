@@ -16,13 +16,13 @@ namespace Kusume
 
         public void Output()
         {
-            if(GameManager.TotalScore > 99999999)
+             if(GameManager.ResultScore > 99999999)
             {
                 scoreUI.text = "99999999+";
             }
             else
             {
-                scoreUI.text = GameManager.TotalScore.ToString();
+                scoreUI.text = GameManager.ResultScore.ToString();
             }
 
             if(GameManager.NormalAndroidNumber > 999)

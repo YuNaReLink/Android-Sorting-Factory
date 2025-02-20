@@ -31,5 +31,21 @@ namespace Kusume
         };
 
         public static float[] SpawnInterval => spawnInterval;
+
+        private static float[] minConsecutiveSpawnIntervals = new float[]
+        {
+            1.0f,
+            0.8f,
+            0.6f,
+        };
+        public static float[] MinConsecutiveSpawnIntervals => minConsecutiveSpawnIntervals;
+
+        private static float[] maxConsecutiveSpawnIntervals = new float[]
+        {
+            1.5f,
+            1.0f,
+            0.8f,
+        };
+        public static float[] MaxConsecutiveSpawnIntervals => maxConsecutiveSpawnIntervals;
     }
 }
