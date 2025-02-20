@@ -17,9 +17,6 @@ namespace CreateScript
         //背景のスクロールが終了する位置
         [SerializeField] 
         private float           deadLine;
-        //複数の背景画像を配置する位置の間隔
-        [SerializeField]
-        private float           imageInterval = 19f;
 
         [SerializeField]
         private GameObject[]    backGrounds = new GameObject[2];

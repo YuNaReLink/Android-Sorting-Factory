@@ -34,17 +34,10 @@ namespace Kusume
         public bool         longLongCrush => longCrush;
 
         [SerializeField]
-        private Vector3     rayOffset;
-        [SerializeField]
         private Vector3[]   rayOffsets;
 
         [SerializeField]
         private LayerMask layerMask;
-
-        //public float StopTime;
-
-        public event Action<Impact> OnHit;
-        public event Action<Impact> OnImpact;
 
         private CreateEffectMachine effectMachine;
 

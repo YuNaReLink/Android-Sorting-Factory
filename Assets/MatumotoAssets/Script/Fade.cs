@@ -71,14 +71,13 @@ public class Fade : MonoBehaviour
     /// <returns></returns>
     private IEnumerator Fading(int cl, float StartAlpha, float EndAlpha, float duration, Action onComplete)
     {
-        Debug.Log("YONDA?");
         fadeCanvas.enabled = true;
         float elapsedTime = 0;
         Color color = colors[cl];
 
         while (elapsedTime < duration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             color.a = Mathf.Lerp(StartAlpha, EndAlpha, elapsedTime / duration);
             fadeImagies[cl].color = color;
             yield return null;
