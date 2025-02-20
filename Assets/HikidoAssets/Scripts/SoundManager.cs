@@ -30,6 +30,8 @@ namespace hikido
             gamemanagerso.PushLever += PushLever;
             gamemanagerso.PullLever += PullLever;
             gamemanagerso.CheckSE += SelectCheckSE;
+            gamemanagerso.DamageSE += PlayerDamageSE;   
+         
 
         }
 
@@ -41,6 +43,7 @@ namespace hikido
             gamemanagerso.ScrapNormal -= CharacterScrap_Destoroyer;
             gamemanagerso.ScrapBad -= CharacterScrap_Bad;
             gamemanagerso.CheckSE -= SelectCheckSE;
+            gamemanagerso.DamageSE -= PlayerDamageSE;
         }
 
 
@@ -112,12 +115,11 @@ namespace hikido
             audiomanager.BGMStop();
         }
 
-
-
-
-
-
-
+        /// <summary>  /// プレイヤーがダメージを食らった時のSE　/// </summary>
+        private void PlayerDamageSE()
+        {
+            AudioManager.Instance?.PlayspecificSE("System", 1);
+        }
 
     }
 }

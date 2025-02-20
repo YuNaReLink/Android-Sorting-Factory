@@ -62,7 +62,7 @@ namespace hikido
         private void Start()
         {
             //一度だけ最初に呼び出す
-            InvokeRepeating("TimeCountUP", 0.0f, 1.0f);
+            //InvokeRepeating("TimeCountUP", 0.0f, 1.0f);
             IngameStart();
             totalScore = 0;
             aliveTime = 0;
@@ -83,14 +83,14 @@ namespace hikido
         {
             gameManagerSO.OnAddScore += ScoreUP;
             gameManagerSO.OutGame += EndGgme;
-            gameManagerSO.OutGame += ResetScore;
+            
         }
 
         private void OnDisable()
         {
             gameManagerSO.OnAddScore -= ScoreUP;
             gameManagerSO.OutGame -= EndGgme;
-            gameManagerSO.OutGame -= ResetScore;
+           
         }
 
         /// <summary>　/// 難易度選択後　/// </summary>
@@ -141,7 +141,7 @@ namespace hikido
         /// <summary> /// スコアの加算 /// </summary>
         private void ScoreUP()
         {
-            //totalScore += upScore;
+            totalScore += upScore;
             //ingame時のみスコアを加算
             if (gameManagerSO.Ingameflg)
             {
@@ -165,7 +165,7 @@ namespace hikido
         }
 
         /// <summary> /// スコアを初期化 /// </summary>
-        public void ResetScore()
+        public static void ResetScore()
         {
             totalScore = 0;
         }

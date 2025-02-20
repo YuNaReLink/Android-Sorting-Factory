@@ -19,8 +19,10 @@ namespace Kusume
         [SerializeField]
         private Image       selectImage;
 
+        //引土追加した箇所
         [SerializeField]
         public static SoundManager soundManager;
+
 
         [SerializeField]
         private Vector2     selectImageOffset;

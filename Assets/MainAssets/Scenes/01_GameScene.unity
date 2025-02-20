@@ -2309,6 +2309,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4948946768756930393, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
+      propertyPath: SECategorys.Array.data[0].sounds.Array.data[0].seVolume
+      value: 0.662
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948946768756930393, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
+      propertyPath: SECategorys.Array.data[0].sounds.Array.data[1].seVolume
+      value: 0.668
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948946768756930393, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
+      propertyPath: SECategorys.Array.data[0].sounds.Array.data[2].seVolume
+      value: 0.652
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948946768756930393, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
+      propertyPath: SECategorys.Array.data[1].sounds.Array.data[0].seVolume
+      value: 0.475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948946768756930393, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
+      propertyPath: SECategorys.Array.data[1].sounds.Array.data[1].seVolume
+      value: 0.495
+      objectReference: {fileID: 0}
     - target: {fileID: 8877081554317489938, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.0172818

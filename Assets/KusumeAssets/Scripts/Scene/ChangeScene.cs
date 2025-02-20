@@ -1,3 +1,4 @@
+using hikido;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -46,6 +47,7 @@ namespace Kusume
                 }
 
                 SceneChanger.LoadScene(name);
+                
             }
               ));
 

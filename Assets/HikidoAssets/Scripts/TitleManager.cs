@@ -14,8 +14,8 @@ namespace hikido
         private void Start()
         {
             //ゲームスタート時にBGM開始
-           soundManager.StartBGMTIlte();
-
+            soundManager.StartBGMTIlte();
+            //GameManager.ResetScore();
             //テスト用ランキングリセット
             //_rankingManager.ResetRanking();
             _rankingManager.RankingDisplay();

@@ -74,6 +74,7 @@ namespace hikido
             StartCoroutine(Fade.Instance.FadeIn(1,0.2f));
 
             currentHP -= damage;
+            _gameManagerSO.DamageSE?.Invoke();
            
             //CurrentHPの数値の範囲を限定(HP上限 3,下限 0)
             currentHP = Mathf.Clamp(currentHP, 0, charactorHP);
@@ -81,21 +82,17 @@ namespace hikido
             //ダメージを受けたとき->体力バー変化
             UpdateHelth();
 
-    
             if(currentHP == 0)
             {
                 endFlg = true;
                 EndFlg();
                 _gameManagerSO.OutGame?.Invoke();
                 entryResultPanel.gameObject.SetActive(true);
-                
                 output.Output();
 
             }
             
         }
-
-
 
         //HPバーの画像切り替え
         private void UpdateHelth()
