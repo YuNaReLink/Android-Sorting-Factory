@@ -62,6 +62,13 @@ namespace hikido
         //スタート時にActionに関数を設定
         private void Start()
         {
+            //暗転解除
+            if (Fade.Instance != null)
+            {
+              
+                Fade.Instance.FadeIn(0, 1f);
+            }
+
             //一度だけ最初に呼び出す
             InvokeRepeating("TimeCountUP", 0.0f, 1.0f);
             IngameStart();
