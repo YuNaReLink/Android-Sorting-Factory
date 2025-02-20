@@ -7,14 +7,19 @@ namespace hikido
 {
     public class TitleManager : MonoBehaviour
     {
-        [SerializeField] private SceneChanger changer;
         [SerializeField] private SoundManager soundManager;
+        [SerializeField] private RankingManager _rankingManager;
 
         [SerializeField] private float delayTime = 1.0f;
         private void Start()
         {
             //ゲームスタート時にBGM開始
             Invoke("soundManager.StartBGMTIlte", delayTime);
+
+            //テスト用ランキングリセット
+            //_rankingManager.ResetRanking();
+            _rankingManager.RankingDisplay();
+
         }
 
         private void Update()

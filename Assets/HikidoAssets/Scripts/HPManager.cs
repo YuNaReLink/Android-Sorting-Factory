@@ -76,6 +76,7 @@ namespace hikido
             {
                 endFlg = true;
                 EndFlg();
+                _gameManagerSO.OutGame?.Invoke();
             }
             
         }
