@@ -19,4 +19,18 @@ public class GameManagerSO : ScriptableObject
     //damage
     public Action<int> OnAddDamage;
     public Action MistakeDamage;
+
+    //SE
+    [Header("アンドロイド破壊")]
+    public Action ScrapNormal;
+    public Action ScrapDestoroyer;
+    public Action ScrapBad;
+
+    [Header("システム")]
+    public Action CheckSE;
+
+    [Header("レバー関連SE")]
+    public Action PushLever;
+    public Action PullLever;
+
 }

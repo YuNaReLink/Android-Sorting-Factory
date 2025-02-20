@@ -165,6 +165,7 @@ namespace hikido
         public enum SEDATA
         {
             character,
+            Lever,
             System,
             None,
         }
