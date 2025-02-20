@@ -51,31 +51,12 @@ namespace hikido
 
         public static int TotalScore => totalScore;
 
-        private void Awake()
-        {
-            soundManager = FindObjectOfType<SoundManager>();
-            sceneChanger = FindObjectOfType<SceneChanger>();
-            hpManager = FindObjectOfType<HPManager>();
-            _rankingManager = FindObjectOfType<RankingManager>();
-        }
-
         //スタート時にActionに関数を設定
         private void Start()
         {
-            //暗転解除
-            if (Fade.Instance != null)
-            {
-
-                StartCoroutine(Fade.Instance.FadeIn(0, 1f));
-            }
-
             //一度だけ最初に呼び出す
             InvokeRepeating("TimeCountUP", 0.0f, 1.0f);
             IngameStart();
-
-            totalScore = 0;
-            normalAndroidNumber = 0;
-            badAndroidNumber = 0;
         }
 
         private void OnEnable()
@@ -114,6 +95,8 @@ namespace hikido
                 //TODO;数秒間だけずらすようにする
                 //SceneManager.LoadScene("ResultScene");
 
+
+
                 //scoreの保存
                 _rankingManager.SaveScore(totalScore);
                 Debug.Log(totalScore + "現在のスコア ");
@@ -128,9 +111,9 @@ namespace hikido
         /// <summary> /// 時間経過によるスコアの加算 /// </summary>
         private void TimeCountUP()
         {
-            //totalScore += timeUpScore;
+            totalScore += timeUpScore;
             //uIlabel.ScoreUP.text = totalScore.ToString();
-            //Debug.Log(totalScore);
+            Debug.Log(totalScore);
         }
 
         /// <summary> /// スコアの加算 /// </summary>
@@ -138,18 +121,19 @@ namespace hikido
         {
             //totalScore += upScore;
             //ingame時のみスコアを加算
-            //enumでキャラクタータイプを設定している
-            //アンドロイドをはじくとスコア加算
-            //条件文
-            totalScore += upScore;
-            /*
+            if (gameManagerSO.Ingameflg)
+            {
+                //enumでキャラクタータイプを設定している
+                //アンドロイドをはじくとスコア加算
+                //条件文
+                totalScore += upScore;
+            }
             else if(endFlg) 
             {
                 //時間経過によるスコア加算を止める
                 CancelInvoke();
 
             }
-             */
             ScoreUI(totalScore);
         }
 

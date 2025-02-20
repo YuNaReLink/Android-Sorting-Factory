@@ -44,6 +44,8 @@ namespace hikido
             PlayerPrefs.Save();
         }
 
+        
+
         /// <summary> /// rankingをテキストで表示 /// </summary>
         public void RankingDisplay()
         {

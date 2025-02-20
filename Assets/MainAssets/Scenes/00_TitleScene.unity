@@ -1562,6 +1562,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1219364267 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4948946768756930393, guid: 8d3abdde8592d814ba366fbc49185561, type: 3}
+  m_PrefabInstance: {fileID: 144081960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c3bde399d088a64787fe7be0591556b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1262916584
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,6 +3124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectImage: {fileID: 298009838}
+  gameManager: {fileID: 11400000, guid: a15141ace3a756641afd98e6ad435a5a, type: 2}
   selectImageOffset: {x: 0, y: 0}
 --- !u!114 &1982040649
 MonoBehaviour:
@@ -3191,6 +3203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3439419650559737132, guid: 81d10debaa76b194ea03a41800d086fb, type: 3}
+      propertyPath: audiomanager
+      value: 
+      objectReference: {fileID: 1219364267}
     - target: {fileID: 9209992960260751588, guid: 81d10debaa76b194ea03a41800d086fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 85.87589
