@@ -65,8 +65,8 @@ namespace hikido
             //ˆÃ“]‰ğœ
             if (Fade.Instance != null)
             {
-              
-                Fade.Instance.FadeIn(0, 1f);
+
+                StartCoroutine(Fade.Instance.FadeIn(0, 1f));
             }
 
             //ˆê“x‚¾‚¯Å‰‚ÉŒÄ‚Ño‚·
