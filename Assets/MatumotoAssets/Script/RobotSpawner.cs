@@ -71,6 +71,9 @@ public class RobotSpawner : MonoBehaviour
         androidSpeed = GameLevelManager.AndroidSpeeds[(int)GameLevelManager.GameLevel];
 
         spawnInterval = GameLevelManager.SpawnInterval[(int)GameLevelManager.GameLevel];
+
+        minConsecutiveSpawnInterval = GameLevelManager.MinConsecutiveSpawnIntervals[(int)GameLevelManager.GameLevel];
+        maxConsecutiveSpawnInterval = GameLevelManager.MaxConsecutiveSpawnIntervals[(int)GameLevelManager.GameLevel];
     }
     private void Update()
     {
@@ -91,7 +94,6 @@ public class RobotSpawner : MonoBehaviour
     {
         if (singleSpawn)
         {
-            Debug.Log("一発アウト出現");
             InstRobot(transform.position, transform.rotation);
             timeSinceLastSpawn = 0;
             spawnInterval = 2.5f;
