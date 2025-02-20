@@ -13,21 +13,25 @@ namespace hikido
         [SerializeField] private RankingManager _rankingManager;
 
 
-        [Header("ƒXƒRƒA")]
-        //TODO: ŠÔˆá‚¢‚²‚Æ‚ÉƒXƒRƒA‚ğ•Ï‚¦‚é‚æ‚¤‚É‚·‚é
+        [Header("ã‚¹ã‚³ã‚¢")]
+        //TODO: é–“é•ã„ã”ã¨ã«ã‚¹ã‚³ã‚¢ã‚’å¤‰ãˆã‚‹ã‚ˆã†ã«ã™ã‚‹
         [SerializeField] private int upScore = 0;
         [SerializeField] private int timeUpScore = 500;
 
-        //‡ŒvƒXƒRƒA
+        //åˆè¨ˆã‚¹ã‚³ã‚¢
         public static int totalScore = 0;
-        
 
 
-        [Header("ƒXƒRƒA—pƒtƒ‰ƒO")]
+        //ç”Ÿå­˜æ™‚é–“ç”¨ã®ã‚¿ã‚¤ãƒ 
+        public static float aliveTime = 0;
+
+
+
+        [Header("ã‚¹ã‚³ã‚¢ç”¨ãƒ•ãƒ©ã‚°")]
         private bool endFlg = false;
 
-        /*‚±‚±‚©‚ç’Ç‰Á‚µ‚Ü‚µ‚½iby“í–Új*/
-        [Header("ƒXƒRƒA—pUI")]
+        /*ã“ã“ã‹ã‚‰è¿½åŠ ã—ã¾ã—ãŸï¼ˆbyæ¥ ç›®ï¼‰*/
+        [Header("ã‚¹ã‚³ã‚¢ç”¨UI")]
         [SerializeField]
         private Text ScoreText;
 
@@ -44,12 +48,35 @@ namespace hikido
 
         public static int TotalScore => totalScore;
 
-        //ƒXƒ^[ƒg‚ÉAction‚ÉŠÖ”‚ğİ’è
+        public static float AliveTime => aliveTime;
+
+        private void Awake()
+        {
+            soundManager = FindObjectOfType<SoundManager>();
+            sceneChanger = FindObjectOfType<SceneChanger>();
+            hpManager = FindObjectOfType<HPManager>();
+            _rankingManager = FindObjectOfType<RankingManager>();
+        }
+
+        //ã‚¹ã‚¿ãƒ¼ãƒˆæ™‚ã«Actionã«é–¢æ•°ã‚’è¨­å®š
         private void Start()
         {
-            //ˆê“x‚¾‚¯Å‰‚ÉŒÄ‚Ño‚·
+            //ä¸€åº¦ã ã‘æœ€åˆã«å‘¼ã³å‡ºã™
             InvokeRepeating("TimeCountUP", 0.0f, 1.0f);
             IngameStart();
+            totalScore = 0;
+            aliveTime = 0;
+        }
+
+        private void Update()
+        {
+            CountAliveTime();
+        }
+
+        //ç”Ÿå­˜æ™‚é–“ã®ã‚«ã‚¦ãƒ³ãƒˆã‚’ã™ã‚‹
+        private void CountAliveTime()
+        {
+            aliveTime += Time.deltaTime;
         }
 
         private void OnEnable()
@@ -64,44 +91,48 @@ namespace hikido
             gameManagerSO.OutGame -= EndGgme;
         }
 
-        /// <summary>@/// “ïˆÕ“x‘I‘ğŒã@/// </summary>
+        /// <summary>ã€€/// é›£æ˜“åº¦é¸æŠå¾Œã€€/// </summary>
         private void IngameStart()
         {
-            //gamestart‚ÉAction“à‚ÌŠi”[‚µ‚Ä‚¢‚éŠÖ”‚ğg—p
+            //gamestartæ™‚ã«Actionå†…ã®æ ¼ç´ã—ã¦ã„ã‚‹é–¢æ•°ã‚’ä½¿ç”¨
             gameManagerSO.IngameStart?.Invoke();
         } 
 
 
-        /// <summary>@/// ƒQ[ƒ€I—¹‚Ìˆ—@/// </summary>
+        /// <summary>ã€€/// ã‚²ãƒ¼ãƒ çµ‚äº†æ™‚ã®å‡¦ç†ã€€/// </summary>
         private void EndGgme()
         {
-            //ğŒi‘Ì—Í = 0) player‚©‚çHP‚ğQÆ
+            //æ¡ä»¶ï¼ˆä½“åŠ› = 0) playerã‹ã‚‰HPã‚’å‚ç…§
             if(hpManager.EndFlg())
             {
                 endFlg = true;
                 gameManagerSO.OutGameflg = true;
 
-                //BGM‚Ì’â~‚ÆØ‚è‘Ö‚¦
+                //BGMã®åœæ­¢ã¨åˆ‡ã‚Šæ›¿ãˆ
                 //soundManager.BGMStop();
 
-                //Ÿ‚Ìscene‚Ö‚Ì‘JˆÚ
-                //TODO;”•bŠÔ‚¾‚¯‚¸‚ç‚·‚æ‚¤‚É‚·‚é
+                //æ¬¡ã®sceneã¸ã®é·ç§»
+                //TODO;æ•°ç§’é–“ã ã‘ãšã‚‰ã™ã‚ˆã†ã«ã™ã‚‹
                 //SceneManager.LoadScene("ResultScene");
 
 
 
-                //score‚Ì•Û‘¶
+                //scoreã®ä¿å­˜
                 _rankingManager.SaveScore(totalScore);
-                Debug.Log(totalScore + "Œ»İ‚ÌƒXƒRƒA ");
+                Debug.Log(totalScore + "ç¾åœ¨ã®ã‚¹ã‚³ã‚¢ ");
+
+                //aliveTimeã®ä¿å­˜
+                _rankingManager.SaveAliveTime(aliveTime);
+                Debug.Log(aliveTime + "ç¾åœ¨ã®ã‚¿ã‚¤ãƒ  ");
 
                 //test
                 //SceneManager.LoadScene("00_TitleScene_hikido");
-        
+
             }
         }
 
 
-        /// <summary> /// ŠÔŒo‰ß‚É‚æ‚éƒXƒRƒA‚Ì‰ÁZ /// </summary>
+        /// <summary> /// æ™‚é–“çµŒéã«ã‚ˆã‚‹ã‚¹ã‚³ã‚¢ã®åŠ ç®— /// </summary>
         private void TimeCountUP()
         {
             totalScore += timeUpScore;
@@ -109,21 +140,21 @@ namespace hikido
             Debug.Log(totalScore);
         }
 
-        /// <summary> /// ƒXƒRƒA‚Ì‰ÁZ /// </summary>
+        /// <summary> /// ã‚¹ã‚³ã‚¢ã®åŠ ç®— /// </summary>
         private void ScoreUP()
         {
             //totalScore += upScore;
-            //ingame‚Ì‚İƒXƒRƒA‚ğ‰ÁZ
+            //ingameæ™‚ã®ã¿ã‚¹ã‚³ã‚¢ã‚’åŠ ç®—
             if (gameManagerSO.Ingameflg)
             {
-                //enum‚ÅƒLƒƒƒ‰ƒNƒ^[ƒ^ƒCƒv‚ğİ’è‚µ‚Ä‚¢‚é
-                //ƒAƒ“ƒhƒƒCƒh‚ğ‚Í‚¶‚­‚ÆƒXƒRƒA‰ÁZ
-                //ğŒ•¶
+                //enumã§ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼ã‚¿ã‚¤ãƒ—ã‚’è¨­å®šã—ã¦ã„ã‚‹
+                //ã‚¢ãƒ³ãƒ‰ãƒ­ã‚¤ãƒ‰ã‚’ã¯ã˜ãã¨ã‚¹ã‚³ã‚¢åŠ ç®—
+                //æ¡ä»¶æ–‡
                 totalScore += upScore;
             }
             else if(endFlg) 
             {
-                //ŠÔŒo‰ß‚É‚æ‚éƒXƒRƒA‰ÁZ‚ğ~‚ß‚é
+                //æ™‚é–“çµŒéã«ã‚ˆã‚‹ã‚¹ã‚³ã‚¢åŠ ç®—ã‚’æ­¢ã‚ã‚‹
                 CancelInvoke();
 
             }
@@ -135,7 +166,7 @@ namespace hikido
             ScoreText.text = totalScore.ToString();
         }
 
-        /// <summary> /// ƒXƒRƒA‚ğ‰Šú‰» /// </summary>
+        /// <summary> /// ã‚¹ã‚³ã‚¢ã‚’åˆæœŸåŒ– /// </summary>
         public void ResetScore()
         {
             totalScore = 0;
