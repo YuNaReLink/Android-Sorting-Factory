@@ -27,6 +27,8 @@ namespace Kusume
                     {
                         case AndroidType.Normal:
                             GameManager.AddNormalAndroidNumber();
+                            //ÉXÉRÉAí«â¡
+                            _gameManagerSO.OnAddScore?.Invoke();
                             break;
                         case AndroidType.Bad:
                             _gameManagerSO.OnAddDamage?.Invoke(1);

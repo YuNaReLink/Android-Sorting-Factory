@@ -8,21 +8,38 @@ public class RobotSpawner : MonoBehaviour
 {
     public static RobotSpawner main;
 
-    [SerializeField] private float spawnInterval = 1f;
-    [SerializeField] private GameObject robotPrefab;
+    [SerializeField] 
+    private float spawnInterval = 1f;
+    [SerializeField]
+    private float consecutiveSpawnInterval;
+    private Timer consecutiveSpawnIntervalTimer = new Timer();
+    [SerializeField]
+    private int consecutiveSpawnCount = 1;
+
+    private int minSpawnCount = 1;
+    private int maxSpawnCount = 6;
+
+    private bool singleSpawn = false;
+
+
+    [SerializeField] 
+    private GameObject robotPrefab;
 
     
 
     private bool isSpawning = false;
     private float timeSinceLastSpawn = 0;
 
+    private int index = 0;
+
     //サイト参考
-    [SerializeField] GameObject robot = null;
+    [SerializeField] 
+    private GameObject robot = null;
     //弾を保持（プーリング）する空のオブジェクト
-    Transform robots;
+    private Transform robots;
     public Transform RobotsParent => robots;
 
-    List<GameObject> objectList = new List<GameObject>();
+    private List<GameObject> objectList = new List<GameObject>();
     
     [SerializeField]
     private Kusume.AndroidLedger androidLedger;
@@ -56,11 +73,52 @@ public class RobotSpawner : MonoBehaviour
     {
         if (!moveflag) { return; }
         timeSinceLastSpawn += Time.deltaTime;
-        if (!isSpawning) { return; }
-        if (spawnInterval < timeSinceLastSpawn)
+        consecutiveSpawnIntervalTimer.Update(Time.deltaTime);
+        if (!isSpawning)
+        {
+            Spawn();
+        }
+        else
+        {
+            SpawnCheck();
+        }
+    }
+
+    private void Spawn()
+    {
+        if (index == (int)AndroidType.VeryBad)
         {
             InstRobot(transform.position, transform.rotation);
             timeSinceLastSpawn = 0;
+        }
+        else
+        {
+            if (!consecutiveSpawnIntervalTimer.IsEnd()) { return; }
+            InstConsecutiveRobot(transform.position, transform.rotation);
+            consecutiveSpawnIntervalTimer.Start(consecutiveSpawnInterval);
+            consecutiveSpawnCount--;
+            if(consecutiveSpawnCount == 0)
+            {
+                isSpawning = true;
+                timeSinceLastSpawn = 0;
+            }
+        }
+    }
+
+    private void SpawnCheck()
+    {
+        if (spawnInterval > timeSinceLastSpawn) { return; }
+
+        index = UnityEngine.Random.Range(0, androidLedger.AndroidLedgerInfos.Length);
+        isSpawning = false;
+        if (index == (int)AndroidType.VeryBad)
+        {
+            singleSpawn = true;
+        }
+        else
+        {
+            singleSpawn = false;
+            consecutiveSpawnCount = UnityEngine.Random.Range(minSpawnCount, maxSpawnCount);
         }
     }
 
@@ -85,6 +143,7 @@ public class RobotSpawner : MonoBehaviour
                 //アクティブにする
                 t.gameObject.SetActive(true);
                 SetRobotType(t);
+                isSpawning = true;
                 return;
             }
          
@@ -93,13 +152,35 @@ public class RobotSpawner : MonoBehaviour
         //生成した時にrobotsの子にする
        GameObject r = Instantiate(robot, pos, rot,robots);
        SetRobotType(r.transform);
+       isSpawning = true;
+    }
+
+    private void InstConsecutiveRobot(Vector3 pos, quaternion rot)
+    {
+        foreach (Transform t in robots)
+        {
+            if (!t.gameObject.activeSelf)
+            {
+                //非アクティブなオブジェクトの位置と回転を設定
+                t.SetPositionAndRotation(pos, rot);
+                //アクティブにする
+                t.gameObject.SetActive(true);
+                SetRobotType(t);
+                return;
+            }
+
+        }
+
+        //生成した時にrobotsの子にする
+        GameObject r = Instantiate(robot, pos, rot, robots);
+        SetRobotType(r.transform);
     }
 
     private void SetRobotType(Transform t)
     {
         Kusume.AndroidTypeController controller = t.GetComponent<Kusume.AndroidTypeController>();
-        int num = UnityEngine.Random.Range(0, androidLedger.AndroidLedgerInfos.Length);
-        controller.ChangeType(androidLedger.AndroidLedgerInfos[num]);
+        index = UnityEngine.Random.Range(0, androidLedger.AndroidLedgerInfos.Length);
+        controller.ChangeType(androidLedger.AndroidLedgerInfos[index]);
 
         RobotMove robotMove = controller.GetComponent<RobotMove>();
         robotMove.SetMoveSpeed(androidSpeed);

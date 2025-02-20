@@ -26,8 +26,8 @@ namespace Kusume
         private static float[] spawnInterval = new float[]
         {
             2f,
-            1.5f,
-            1f
+            2.1f,
+            2.25f
         };
 
         public static float[] SpawnInterval => spawnInterval;
