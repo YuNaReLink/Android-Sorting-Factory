@@ -63,6 +63,7 @@ namespace Kusume
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 onRelease?.Invoke();
+
             }
         }
 

@@ -57,10 +57,12 @@ namespace Kusume
             {
                 case AndroidType.Normal:
                     _gameManagerSO.MistakeDamage?.Invoke();
+                    _gameManagerSO.ScrapNormal?.Invoke();
                     break;
                 case AndroidType.Bad:
                 case AndroidType.VeryBad:
                     //ÉXÉRÉAí«â¡
+                    _gameManagerSO.ScrapDestoroyer?.Invoke();
                     _gameManagerSO.OnAddScore?.Invoke();
                     GameManager.AddBadAndroidNumber();
                     break;

@@ -19,6 +19,8 @@ namespace Kusume
         [SerializeField]
         private float       speed;
 
+        [SerializeField] GameManagerSO _gameManagerso;
+
         private Vector3     MovePosition => new Vector3(basePosition.x, basePosition.y + verticalOffsetY, basePosition.z);
 
         private bool        close;
@@ -85,11 +87,13 @@ namespace Kusume
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 onPressed?.Invoke();
+                _gameManagerso.PushLever?.Invoke();
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
                 onRelease?.Invoke();
+                _gameManagerso.PullLever?.Invoke(); 
             }
         }
         private void OnPressed()
