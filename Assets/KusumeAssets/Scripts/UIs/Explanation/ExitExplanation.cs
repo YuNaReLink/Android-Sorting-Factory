@@ -34,7 +34,7 @@ namespace Kusume
             }
             if (!scroll) { return; }
 
-            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition,new Vector2(0,1080), speed);
+            rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition,new Vector2(0,1080), speed * Time.unscaledDeltaTime);
 
             Vector2 sub = rectTransform.anchoredPosition - new Vector2(0, 1080);
             if (sub.magnitude < 0.15f)

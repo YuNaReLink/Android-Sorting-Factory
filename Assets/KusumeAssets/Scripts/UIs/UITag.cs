@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Kusume
@@ -13,7 +11,7 @@ namespace Kusume
     public class UITag : MonoBehaviour
     {
         [SerializeField]
-        private UITagList tag;
+        private new UITagList tag;
         public UITagList Tag => tag;
     }
 }
