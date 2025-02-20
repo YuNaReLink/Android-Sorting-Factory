@@ -27,7 +27,11 @@ namespace hikido
 
         //合計スコア
         public static int totalScore = 0;
-        
+
+
+        //生存時間用のタイム
+        public static float aliveTime = 0;
+
 
 
         [Header("スコア用フラグ")]
@@ -50,6 +54,8 @@ namespace hikido
         public static void AddBadAndroidNumber() { badAndroidNumber++; }
 
         public static int TotalScore => totalScore;
+
+        public static float AliveTime => aliveTime;
 
         private void Awake()
         {
@@ -74,6 +80,18 @@ namespace hikido
             IngameStart();
 
             totalScore = 0;
+            aliveTime = 0;
+        }
+
+        private void Update()
+        {
+            CountAliveTime();
+        }
+
+        //生存時間のカウントをする
+        private void CountAliveTime()
+        {
+            aliveTime += Time.deltaTime;
         }
 
         private void OnEnable()
@@ -116,9 +134,13 @@ namespace hikido
                 _rankingManager.SaveScore(totalScore);
                 Debug.Log(totalScore + "現在のスコア ");
 
+                //aliveTimeの保存
+                _rankingManager.SaveAliveTime(aliveTime);
+                Debug.Log(aliveTime + "現在のタイム ");
+
                 //test
                 //SceneManager.LoadScene("00_TitleScene_hikido");
-        
+
             }
         }
 
