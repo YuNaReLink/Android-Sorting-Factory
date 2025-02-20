@@ -12,6 +12,9 @@ public class RobotSpawner : MonoBehaviour
     private float spawnInterval = 1f;
     [SerializeField]
     private float consecutiveSpawnInterval;
+
+    private float minConsecutiveSpawnInterval = 0.75f;
+    private float maxConsecutiveSpawnInterval = 1.0f;
     private Timer consecutiveSpawnIntervalTimer = new Timer();
     [SerializeField]
     private int consecutiveSpawnCount = 1;
@@ -99,6 +102,7 @@ public class RobotSpawner : MonoBehaviour
         {
             if (!consecutiveSpawnIntervalTimer.IsEnd()) { return; }
             InstConsecutiveRobot(transform.position, transform.rotation);
+            consecutiveSpawnInterval = UnityEngine.Random.Range(minConsecutiveSpawnInterval, maxConsecutiveSpawnInterval);
             consecutiveSpawnIntervalTimer.Start(consecutiveSpawnInterval);
             consecutiveSpawnCount--;
             if(consecutiveSpawnCount <= 0)

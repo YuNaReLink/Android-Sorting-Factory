@@ -17,8 +17,8 @@ namespace Kusume
         private static float[] androidSpeeds = new float[]
         {
             3,
-            4,
-            5
+            5,
+            7
         };
 
         public static float[] AndroidSpeeds => androidSpeeds;
@@ -26,8 +26,8 @@ namespace Kusume
         private static float[] spawnInterval = new float[]
         {
             2f,
-            2.1f,
-            2.25f
+            1.5f,
+            1.0f
         };
 
         public static float[] SpawnInterval => spawnInterval;
