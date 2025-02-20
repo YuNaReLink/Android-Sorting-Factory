@@ -1,4 +1,6 @@
+using hikido;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +19,8 @@ namespace Kusume
         [SerializeField]
         private Image       selectImage;
 
-        [SerializeField] 
-        private GameManagerSO gameManager;
+        [SerializeField]
+        public static SoundManager soundManager;
 
         [SerializeField]
         private Vector2     selectImageOffset;
@@ -58,7 +60,7 @@ namespace Kusume
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 decideTimer.Start(count);
-                gameManager.CheckSE?.Invoke();
+                SoundManager.SelectCheckSE();
             }
 
             if (Input.GetKey(KeyCode.Space))

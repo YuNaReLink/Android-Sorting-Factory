@@ -15,8 +15,10 @@ namespace hikido
         /// <summary> /// スタート時にActionに関数を格納 /// </summary>
         private void Start()
         {
+            audiomanager = GetComponent<AudioManager>();    
             gamemanagerso.IngameStart += StartIngameBGM;
             gamemanagerso.OutGame += OutGameBGM;
+            
            
         }
 
@@ -28,6 +30,7 @@ namespace hikido
             gamemanagerso.PushLever += PushLever;
             gamemanagerso.PullLever += PullLever;
             gamemanagerso.CheckSE += SelectCheckSE;
+
         }
 
         private void OnDisable()
@@ -66,7 +69,7 @@ namespace hikido
        
 
         /// <summary> /// システム(ボタンチェック時のSE) /// </summary>
-        private void SelectCheckSE()
+        public static void SelectCheckSE()
         {
             AudioManager.Instance.PlayspecificSE("System", 0);
         }

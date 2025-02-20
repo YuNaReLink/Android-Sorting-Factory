@@ -63,12 +63,14 @@ namespace hikido
         {
             gameManagerSO.OnAddScore += ScoreUP;
             gameManagerSO.OutGame += EndGgme;
+            gameManagerSO.OutGame += ResetScore;
         }
 
         private void OnDisable()
         {
             gameManagerSO.OnAddScore -= ScoreUP;
             gameManagerSO.OutGame -= EndGgme;
+            gameManagerSO.OutGame -= ResetScore;
         }
 
         /// <summary>　/// 難易度選択後　/// </summary>
@@ -96,14 +98,10 @@ namespace hikido
                 //SceneManager.LoadScene("ResultScene");
 
 
-
                 //scoreの保存
                 _rankingManager.SaveScore(totalScore);
                 Debug.Log(totalScore + "現在のスコア ");
 
-                //test
-                //SceneManager.LoadScene("00_TitleScene_hikido");
-        
             }
         }
 

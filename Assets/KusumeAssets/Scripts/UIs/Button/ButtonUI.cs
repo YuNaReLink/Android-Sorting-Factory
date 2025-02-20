@@ -21,6 +21,7 @@ namespace Kusume
         [SerializeField]
         private Sprite      pressedImage;
 
+
         private Button      button;
 
         private Image       buttonImage;
