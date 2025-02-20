@@ -28,6 +28,7 @@ public class GameManagerSO : ScriptableObject
 
     [Header("システム")]
     public Action CheckSE;
+    public Action DamageSE;
 
     [Header("レバー関連SE")]
     public Action PushLever;
