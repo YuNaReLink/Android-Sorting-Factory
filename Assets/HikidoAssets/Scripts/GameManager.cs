@@ -71,6 +71,9 @@ namespace hikido
             totalScore = 0;
             resultScore = 0;
             aliveTime = 0;
+
+            normalAndroidNumber = 0;
+            badAndroidNumber = 0;
         }
 
         private void Update()
