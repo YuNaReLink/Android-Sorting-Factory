@@ -57,6 +57,11 @@ namespace Kusume
 
     public static class SceneChanger
     {
+        private static SceneList sceneList;
+        public static SceneList Scene => sceneList;
+
+        public static void SetScene(SceneList scene) { scene = sceneList; }
+
         public static void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName);

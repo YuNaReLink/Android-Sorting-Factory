@@ -47,7 +47,7 @@ namespace Kusume
 
             if(rigidbody2D.gravityScale == 0&&type == AndroidType.VeryBad)
             {
-                if (Input.GetKey(KeyCode.Space))
+                if (Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0))
                 {
                     BeltConveyorController.Instance.ChargeCrushUI.Activate(true);
                     DecreaseLife();

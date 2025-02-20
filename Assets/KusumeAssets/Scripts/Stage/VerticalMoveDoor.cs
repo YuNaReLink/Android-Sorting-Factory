@@ -84,13 +84,13 @@ namespace Kusume
 
         private void InputChangeUI()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 onPressed?.Invoke();
                 _gameManagerso.PushLever?.Invoke();
             }
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
             {
                 onRelease?.Invoke();
                 _gameManagerso.PullLever?.Invoke(); 

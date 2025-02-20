@@ -139,8 +139,6 @@ namespace hikido
         private void TimeCountUP()
         {
             totalScore += timeUpScore;
-            //uIlabel.ScoreUP.text = totalScore.ToString();
-            Debug.Log(totalScore);
         }
 
         /// <summary> /// スコアの加算 /// </summary>
