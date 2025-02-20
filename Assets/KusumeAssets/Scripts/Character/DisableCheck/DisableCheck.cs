@@ -15,7 +15,7 @@ namespace Kusume
         {
             Vector3 screenMin = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
             Vector3 screenMax = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane));
-            if (transform.position.x < screenMin.x - 1f || transform.position.x > screenMax.x ||
+            if (transform.position.x < screenMin.x - 2f || transform.position.x > screenMax.x ||
                 transform.position.y < screenMin.y || transform.position.y > screenMax.y)
             {
                 Disable();
@@ -59,10 +59,12 @@ namespace Kusume
             {
                 case AndroidType.Normal:
                     _gameManagerSO.MistakeDamage?.Invoke();
+                    _gameManagerSO.ScrapNormal?.Invoke();
                     break;
                 case AndroidType.Bad:
                 case AndroidType.VeryBad:
                     //ÉXÉRÉAí«â¡
+                    _gameManagerSO.ScrapDestoroyer?.Invoke();
                     _gameManagerSO.OnAddScore?.Invoke();
                     GameManager.AddBadAndroidNumber();
                     break;

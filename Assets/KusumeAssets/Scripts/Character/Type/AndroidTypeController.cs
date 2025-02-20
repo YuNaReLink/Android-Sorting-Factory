@@ -21,6 +21,8 @@ namespace Kusume
         [SerializeField]
         private float               life;
 
+        private float               maxLife;
+
         private DisableCheck        disableCheck;
 
         public AndroidType          Type => type;
@@ -47,6 +49,7 @@ namespace Kusume
             {
                 if (Input.GetKey(KeyCode.Space))
                 {
+                    BeltConveyorController.Instance.ChargeCrushUI.Activate(true);
                     DecreaseLife();
                 }
                 else
@@ -54,11 +57,12 @@ namespace Kusume
                     rigidbody2D.gravityScale = 2;
 
                     RobotMove movement = GetComponent<RobotMove>();
-                    movement.Stop();
-                    movement.SetStopFlag(true);
+                    movement.SetStopFlag(false);
 
                     BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
                     boxCollider.isTrigger = false;
+
+                    BeltConveyorController.Instance.ChargeCrushUI.Activate(false);
                 }
             }
         }
@@ -81,12 +85,14 @@ namespace Kusume
                 particleSystem.gameObject.SetActive(false);
             }
             life = info.life;
+            maxLife = life;
         }
 
         public void ChangeScrap()
         {
             spriteRenderer.sprite = scrapSprite;
             type = AndroidType.Scrap;
+            transform.localScale = Vector3.one;
         }
 
         private void RandomSetEffect(AndroidLedgerInfo info)
@@ -104,8 +110,10 @@ namespace Kusume
         private void DecreaseLife()
         {
             life -= Time.deltaTime;
+            BeltConveyorController.Instance.ChargeCrushUI.ChargeRatio(maxLife, life);
             if(life < 0)
             {
+                BeltConveyorController.Instance.ChargeCrushUI.Activate(false);
                 rigidbody2D.gravityScale = 2;
                 //BeltConveyorController.Instance.AllMoveActivate(true);
                 BeltConveyorController.Instance.LongCrush();

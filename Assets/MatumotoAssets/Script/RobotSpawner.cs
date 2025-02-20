@@ -86,10 +86,14 @@ public class RobotSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        if (index == (int)AndroidType.VeryBad)
+        if (singleSpawn)
         {
+            Debug.Log("一発アウト出現");
             InstRobot(transform.position, transform.rotation);
             timeSinceLastSpawn = 0;
+            spawnInterval = 2.5f;
+            singleSpawn = false;
+            isSpawning = true;
         }
         else
         {
@@ -97,24 +101,29 @@ public class RobotSpawner : MonoBehaviour
             InstConsecutiveRobot(transform.position, transform.rotation);
             consecutiveSpawnIntervalTimer.Start(consecutiveSpawnInterval);
             consecutiveSpawnCount--;
-            if(consecutiveSpawnCount == 0)
+            if(consecutiveSpawnCount <= 0)
             {
                 isSpawning = true;
                 timeSinceLastSpawn = 0;
+                spawnInterval = GameLevelManager.SpawnInterval[(int)GameLevelManager.GameLevel];
             }
         }
     }
 
     private void SpawnCheck()
     {
+        //インターバルチェック
         if (spawnInterval > timeSinceLastSpawn) { return; }
-
+        //敵のタイプをランダムに決定
         index = UnityEngine.Random.Range(0, androidLedger.AndroidLedgerInfos.Length);
+        //一度スポーン選択可能フラグを無効に
         isSpawning = false;
+        //タイプが一発アウトなら単体スポーン
         if (index == (int)AndroidType.VeryBad)
         {
             singleSpawn = true;
         }
+        //そうじゃなければ
         else
         {
             singleSpawn = false;

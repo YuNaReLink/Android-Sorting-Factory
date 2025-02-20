@@ -46,5 +46,5 @@ MonoBehaviour:
     images:
     - {fileID: 21300000, guid: 186eb125eb37cb74c9a1656c5e7ebced, type: 3}
     scrapImage:
-    - {fileID: 21300000, guid: 186eb125eb37cb74c9a1656c5e7ebced, type: 3}
-    effectFlag: 1
+    - {fileID: 21300000, guid: f0122358cb88a2245938fcfca882b597, type: 3}
+    effectFlag: 0

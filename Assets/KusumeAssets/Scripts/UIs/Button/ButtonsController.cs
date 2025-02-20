@@ -16,6 +16,9 @@ namespace Kusume
         [SerializeField]
         private Image       selectImage;
 
+        [SerializeField] 
+        private GameManagerSO gameManager;
+
         [SerializeField]
         private Vector2     selectImageOffset;
 
@@ -54,6 +57,7 @@ namespace Kusume
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 decideTimer.Start(count);
+                gameManager.CheckSE?.Invoke();
             }
 
             if (Input.GetKey(KeyCode.Space))

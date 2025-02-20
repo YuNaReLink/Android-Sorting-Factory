@@ -15,79 +15,79 @@ namespace hikido
         [SerializeField] private UIlabel uilabel;
 
 
-        //ŠÔ•ÏŠ·—p
+        //æ™‚é–“å¤‰æ›ç”¨
 
         int min = 0;
         int second = 0;
         int comma = 0;
 
-        /// <summary> /// ƒXƒRƒA‚ğplayerprefs‚É•Û‘¶ /// </summary>
+        /// <summary> /// ã‚¹ã‚³ã‚¢ã‚’playerprefsã«ä¿å­˜ /// </summary>
         /// <param name="score"></param>
         public void SaveScore(int score)
         {
-            //Œ»İ‚Ìƒ‰ƒ“ƒLƒ“ƒO‚ğæ“¾‚µƒŠƒXƒg‚ÉŠi”[
+            //ç¾åœ¨ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’å–å¾—ã—ãƒªã‚¹ãƒˆã«æ ¼ç´
             List<int> scores = new List<int>();
 
-            //ranking‚Ì”-> rankingValue
+            //rankingã®æ•°-> rankingValue
             for (int i = 1; i <= rankingValue; i++)
             {
                 int cuurentScore = PlayerPrefs.GetInt("Rank" + i, 0);
                 scores.Add(cuurentScore);
             }
 
-            //V‚µ‚¢ƒXƒRƒA‚ğ’Ç‰Á
+            //æ–°ã—ã„ã‚¹ã‚³ã‚¢ã‚’è¿½åŠ 
             scores.Add(score);
 
-            //ƒ\[ƒgi~‡j
+            //ã‚½ãƒ¼ãƒˆï¼ˆé™é †ï¼‰
             scores.Sort((a,b) => b.CompareTo(a));
 
-            //ranking‚É•Û‘¶
+            //rankingã«ä¿å­˜
             for(int i = 1; i <= rankingValue; i++)
             {
                 PlayerPrefs.SetInt("Rank" + i, scores[i - 1]);
-                Debug.Log("Rank " + i + ": " + scores[i - 1]);  // ƒfƒoƒbƒO—p‚É•Û‘¶‚·‚éƒXƒRƒA‚ğ•\¦
+                Debug.Log("Rank " + i + ": " + scores[i - 1]);  // ãƒ‡ãƒãƒƒã‚°ç”¨ã«ä¿å­˜ã™ã‚‹ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤º
             }
 
-            //•Û‘¶
+            //ä¿å­˜
             PlayerPrefs.Save();
         }
 
         public void SaveAliveTime(float aliveTime)
         {
-            //Œ»İ‚Ìƒ‰ƒ“ƒLƒ“ƒO‚ğæ“¾‚µƒŠƒXƒg‚ÉŠi”[
+            //ç¾åœ¨ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’å–å¾—ã—ãƒªã‚¹ãƒˆã«æ ¼ç´
             List<float> aliveTimes = new List<float>();
 
-            //ranking‚Ì”-> rankingValue
+            //rankingã®æ•°-> rankingValue
             for (int i = 1; i <= rankingValue; i++)
             {
                 float currentAliveTime = PlayerPrefs.GetFloat("RankTime" + i, 0);
                 aliveTimes.Add(currentAliveTime);
             }
 
-            //V‚µ‚¢ƒXƒRƒA‚ğ’Ç‰Á
+            //æ–°ã—ã„ã‚¹ã‚³ã‚¢ã‚’è¿½åŠ 
             aliveTimes.Add(aliveTime);
 
-            //ƒ\[ƒgi~‡j
+            //ã‚½ãƒ¼ãƒˆï¼ˆé™é †ï¼‰
             aliveTimes.Sort((a, b) => b.CompareTo(a));
 
-            //ranking‚É•Û‘¶
+            //rankingã«ä¿å­˜
             for (int i = 1; i <= rankingValue; i++)
             {
                 PlayerPrefs.SetFloat("RankTime" + i, aliveTimes[i - 1]);
-                Debug.Log("RankTime" + i + ": " + aliveTimes[i - 1]);  // ƒfƒoƒbƒO—p‚É•Û‘¶‚·‚éƒXƒRƒA‚ğ•\¦
+                Debug.Log("RankTime" + i + ": " + aliveTimes[i - 1]);  // ãƒ‡ãƒãƒƒã‚°ç”¨ã«ä¿å­˜ã™ã‚‹ã‚¹ã‚³ã‚¢ã‚’è¡¨ç¤º
             }
 
-            //•Û‘¶
+            //ä¿å­˜
             PlayerPrefs.Save();
         }
 
         /// <summary>
-        /// •b”.­”•b@Ë@•ªA•b”A­”•b‚É’¼‚·@(123.5 „02:03.05)
+        /// ç§’æ•°.å°‘æ•°ç§’ã€€â‡’ã€€åˆ†ã€ç§’æ•°ã€å°‘æ•°ç§’ã«ç›´ã™ã€€(123.5 ï¼ï¼02:03.05)
         /// </summary>
         /// <param name="aliveTime"></param>
         private void AliveTimeCalculate(float aliveTime)
         {
-            //¬”‚ª‚ ‚é”a - ¬”‚ğ–³‹‚µ‚½”a = a‚Ì¬”“_ˆÈ‰º•”•ª‚ª“¾‚ç‚ê‚éH
+            //å°æ•°ãŒã‚ã‚‹æ•°a - å°æ•°ã‚’ç„¡è¦–ã—ãŸæ•°a = aã®å°æ•°ç‚¹ä»¥ä¸‹éƒ¨åˆ†ãŒå¾—ã‚‰ã‚Œã‚‹ï¼Ÿ
 
             min = ((int)aliveTime / 60);
             aliveTime = Mathf.FloorToInt(aliveTime % 60);
@@ -99,7 +99,7 @@ namespace hikido
             //comma = (int)aliveTime;
         }
 
-        /// <summary> /// ranking‚ğƒeƒLƒXƒg‚Å•\¦ /// </summary>
+        /// <summary> /// rankingã‚’ãƒ†ã‚­ã‚¹ãƒˆã§è¡¨ç¤º /// </summary>
         public void RankingDisplay()
         {
             for (int i = 1; i <= rankingValue; i++)
@@ -110,24 +110,24 @@ namespace hikido
                 
               AliveTimeCalculate(aliveTime);
 
-                // ƒXƒRƒA‚ª0‚Ìê‡‚Íu0v‚ğ•\¦
+                // ã‚¹ã‚³ã‚¢ãŒ0ã®å ´åˆã¯ã€Œ0ã€ã‚’è¡¨ç¤º
                 string displayScore = (score == 0)?"0":score.ToString();
                 string displayAliveTime = (aliveTime == 0)?"0":aliveTime.ToString("F2");
 
-                //uilabel‚Ìtext‚Éƒ‰ƒ“ƒLƒ“ƒO‚ğ•\¦
+                //uilabelã®textã«ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’è¡¨ç¤º
                 switch (i)
                 {
-                    //1ˆÊ
+                    //1ä½
                     case 1:
                         uilabel.RankingTop_1.text = displayScore;
                         uilabel.Ranking_AliveTimeTop_1.text = (min +":" + displayAliveTime);              
                             break;
-                    //‚QˆÊ
+                    //ï¼’ä½
                     case 2:
                         uilabel.RankingTop_2.text = displayScore;
                         uilabel.Ranking_AliveTimeTop_2.text = (min + ":" + displayAliveTime);
                         break;
-                    //3ˆÊ
+                    //3ä½
                     case 3:
                         uilabel.RankingTop_3.text = displayScore;
                         uilabel.Ranking_AliveTimeTop_3.text = displayAliveTime;
@@ -136,7 +136,7 @@ namespace hikido
             }
         }
 
-        /// <summary> /// rankingƒŠƒZƒbƒg /// </summary>
+        /// <summary> /// rankingãƒªã‚»ãƒƒãƒˆ /// </summary>
         public void ResetRanking()
         {
             for (int i = 1; i <= rankingValue; i++)

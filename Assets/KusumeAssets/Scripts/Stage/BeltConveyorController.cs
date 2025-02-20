@@ -13,6 +13,9 @@ namespace Kusume
 
         private Impact                          impact;
 
+        private ChargeCrushUI                   chargeCrushUI;
+        public ChargeCrushUI                    ChargeCrushUI => chargeCrushUI;
+
         private BGScroll[]                      scrolls;
 
         private bool                            stop;
@@ -28,6 +31,8 @@ namespace Kusume
             robotSpawner = GetComponentInChildren<RobotSpawner>();
 
             scrolls = GetComponentsInChildren<BGScroll>();
+
+            chargeCrushUI = FindObjectOfType<ChargeCrushUI>();
         }
 
         private void Start()
