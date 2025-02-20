@@ -13,4 +13,9 @@ public class UIlabel : MonoBehaviour
     public Text RankingTop_1;
     public Text RankingTop_2;
     public Text RankingTop_3;
+
+    [Header("ランキング用生存タイムテキスト")]
+    public Text Ranking_AliveTimeTop_1;
+    public Text Ranking_AliveTimeTop_2;
+    public Text Ranking_AliveTimeTop_3;
 }

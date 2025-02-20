@@ -11,16 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MainAssets/Scenes/01_GameScene.unity
     guid: 49fb7999012429b46aa9450a23cbeb8a
-  - enabled: 0
-    path: Assets/MatumotoAssets/MyScene/00_TitleSceneMatumoto.unity
-    guid: 48a03f690a88c5e448903d25bcf736fd
-  - enabled: 0
-    path: Assets/MatumotoAssets/MyScene/01_GameSceneMatumoto.unity
-    guid: cec2cd2333932944a9107d3f38af6902
-  - enabled: 0
-    path: Assets/MatumotoAssets/00_TitleScene_matumoto.unity
-    guid: 655945b677125524e90629538119acbe
-  - enabled: 0
-    path: Assets/MatumotoAssets/TestScene(kusume)matumot_v.unity
-    guid: fc779822fca92184fb160bb9814fab40
   m_configObjects: {}

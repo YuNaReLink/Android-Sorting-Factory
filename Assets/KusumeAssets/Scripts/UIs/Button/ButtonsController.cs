@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace Kusume
 {
     /*
-     * 複数あるボタンをSPACEで変更して決定を行うクラス
+     * 隍�謨ｰ縺ゅｋ繝懊ち繝ｳ繧担PACE縺ｧ螟画峩縺励※豎ｺ螳壹ｒ陦後≧繧ｯ繝ｩ繧ｹ
      */
     public class ButtonsController : MonoBehaviour
     {
@@ -79,12 +79,14 @@ namespace Kusume
             if (decideTimer.IsEnd())
             {
                 buttons[buttonIndex].onClick?.Invoke();
+                InputManager.SetInputFlag(true);
             }
         }
 
         private void ChangeButton()
         {
             if (Input.GetKey(KeyCode.Space)) { return; }
+            if (InputManager.InputFlag) { return; }
             buttonIndex++;
             if(buttonIndex > buttons.Length - 1)
             {
