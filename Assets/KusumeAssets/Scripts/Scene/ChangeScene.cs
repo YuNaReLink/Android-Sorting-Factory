@@ -30,21 +30,25 @@ namespace Kusume
 
         private void SetChangeScene()
         {
-            Fade.Instance.FadeOut(0, 1.5f);
-
-            string name = "00_TitleScene";
+            Fade.Instance.FadeOut(0, 1.5f, () =>
+            {
+                
+            string name = "00_TitleSceneMatumoto";
            
                 switch (sceneList)
                 {
                     case SceneList.Title:
-                        name = "00_TitleScene_matumoto";
+                        name = "00_TitleSceneMatumoto";
                         break;
                     case SceneList.Game:
-                        name = "TestScene(kusume)matumot_v";
+                        name = "01_GameSceneMatumoto";
                         break;
                 }
 
             SceneChanger.LoadScene(name);
+            }
+              );
+
         }
     }
 
