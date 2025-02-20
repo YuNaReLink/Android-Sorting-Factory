@@ -66,12 +66,12 @@ namespace Kusume
 
         private void InputChangeUI()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space)||Input.GetMouseButtonDown(0))
             {
                 onPressed?.Invoke();
             }
 
-            if (Input.GetKeyUp(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space) || Input.GetMouseButtonUp(0))
             {
                 onRelease?.Invoke();
 
