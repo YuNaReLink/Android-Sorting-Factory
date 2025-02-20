@@ -20,7 +20,6 @@ namespace hikido
         [SerializeField] private Image HPImage;
         [SerializeField] private List<Sprite> hpSprite = new List<Sprite>();
         [SerializeField] private GameManagerSO _gameManagerSO;
-        [SerializeField] private AndroidTypeController _controller;
 
         /*少し追加しました(by楠目)*/
         [SerializeField]

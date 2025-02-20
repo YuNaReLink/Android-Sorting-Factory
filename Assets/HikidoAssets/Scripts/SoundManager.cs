@@ -27,6 +27,7 @@ namespace hikido
             gamemanagerso.ScrapDestoroyer += CharacterScrap_Destoroyer;
             gamemanagerso.PushLever += PushLever;
             gamemanagerso.PullLever += PullLever;
+            gamemanagerso.CheckSE += SelectCheckSE;
         }
 
         private void OnDisable()
@@ -36,6 +37,7 @@ namespace hikido
             gamemanagerso.ScrapNormal -= CharacterScrap_normal;
             gamemanagerso.ScrapNormal -= CharacterScrap_Destoroyer;
             gamemanagerso.ScrapBad -= CharacterScrap_Bad;
+            gamemanagerso.CheckSE -= SelectCheckSE;
         }
 
 
@@ -64,7 +66,7 @@ namespace hikido
        
 
         /// <summary> /// システム(ボタンチェック時のSE) /// </summary>
-        public void SelectCheckSE()
+        private void SelectCheckSE()
         {
             AudioManager.Instance.PlayspecificSE("System", 0);
         }
